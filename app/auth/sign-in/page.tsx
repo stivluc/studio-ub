@@ -54,6 +54,11 @@ export default function SignInPage() {
     playAudio('button-sound');
   };
 
+  const handleInputFocus = () => {
+    // Play click sound when focusing an input
+    playAudio('click-sound');
+  };
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -190,6 +195,7 @@ export default function SignInPage() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            onFocus={handleInputFocus}
                             required
                             disabled={loading}
                             className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
@@ -209,6 +215,7 @@ export default function SignInPage() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            onFocus={handleInputFocus}
                             required
                             disabled={loading}
                             className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"

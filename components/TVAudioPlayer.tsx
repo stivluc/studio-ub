@@ -9,6 +9,7 @@ interface TVAudioPlayerProps {
   noiseVolume?: number;
   turnOnVolume?: number;
   buttonVolume?: number;
+  clickVolume?: number;
 }
 
 export default function TVAudioPlayer({
@@ -18,6 +19,7 @@ export default function TVAudioPlayer({
   noiseVolume = 0.3,
   turnOnVolume = 0.5,
   buttonVolume = 0.4,
+  clickVolume = 0.3,
 }: TVAudioPlayerProps) {
   // Audio elements are memoized so they persist across re-renders
   const audioElements = useMemo(
@@ -39,6 +41,11 @@ export default function TVAudioPlayer({
           src="/sounds/button.mp3"
           preload="auto"
         />
+        <audio
+          id="click-sound"
+          src="/sounds/click.mp3"
+          preload="auto"
+        />
       </div>
     ),
     []
@@ -48,6 +55,7 @@ export default function TVAudioPlayer({
     const turnOnAudio = document.getElementById('tv-turn-on-sound') as HTMLAudioElement;
     const noiseAudio = document.getElementById('tv-noise-sound') as HTMLAudioElement;
     const buttonAudio = document.getElementById('button-sound') as HTMLAudioElement;
+    const clickAudio = document.getElementById('click-sound') as HTMLAudioElement;
 
     // Set volumes for all audio elements
     if (turnOnAudio) {
@@ -60,6 +68,10 @@ export default function TVAudioPlayer({
 
     if (buttonAudio) {
       buttonAudio.volume = buttonVolume;
+    }
+
+    if (clickAudio) {
+      clickAudio.volume = clickVolume;
     }
 
     if (!autoplay) return;
@@ -83,7 +95,7 @@ export default function TVAudioPlayer({
       clearTimeout(turnOnTimeout);
       clearTimeout(noiseTimeout);
     };
-  }, [autoplay, turnOnDelay, noiseDelay, noiseVolume, turnOnVolume, buttonVolume]);
+  }, [autoplay, turnOnDelay, noiseDelay, noiseVolume, turnOnVolume, buttonVolume, clickVolume]);
 
   return audioElements;
 }
