@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import { CRTEffect } from '@/lib/animations';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -44,7 +45,25 @@ export default function SignInPage() {
         <div className="relative">
           {/* Green background positioned inside the TV screen - BEHIND the TV */}
           <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 z-0">
-            <div className="w-[75%] h-[55%] bg-[var(--color-pine)] rounded-sm" />
+            <CRTEffect
+              effects={{
+                scanlines: true,
+                vcr: true,
+                snow: true,
+                vignette: false,
+                wobble: true,
+              }}
+              intensity={{
+                vcrOpacity: 0.6,
+                snowOpacity: 0.15,
+                vcrTracking: 220,
+                vcrTapeAge: 50,
+                vcrBlur: 1,
+              }}
+              className="w-[75%] h-[55%]"
+            >
+              <div className="w-full h-full bg-[var(--color-pine)] rounded-sm" />
+            </CRTEffect>
           </div>
 
           {/* TV Image */}
@@ -62,12 +81,12 @@ export default function SignInPage() {
             <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-20">
               <div className="w-full h-[55%] flex items-center justify-center">
                 <div className="w-full space-y-4">
-                  {/* Logo/Title */}
-                  <div className="text-center mb-2">
-                    <h1 className="text-2xl font-bold text-[var(--color-cream)]">
-                      Studio UB Admin
-                    </h1>
-                  </div>
+                    {/* Logo/Title */}
+                    <div className="text-center mb-2">
+                      <h1 className="text-2xl font-bold text-[var(--color-cream)]">
+                        Studio UB Admin
+                      </h1>
+                    </div>
 
                   {/* Form */}
                   <form onSubmit={handleSignIn} className="space-y-3">
