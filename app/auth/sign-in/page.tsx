@@ -42,18 +42,24 @@ export default function SignInPage() {
       <div className="w-full max-w-5xl">
         {/* TV Container */}
         <div className="relative">
+          {/* Green background positioned inside the TV screen - BEHIND the TV */}
+          <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 z-0">
+            <div className="w-[75%] h-[55%] bg-[var(--color-pine)] rounded-sm" />
+          </div>
+
           {/* TV Image */}
-          <div className="relative w-full aspect-[3/3]">
+          <div className="relative w-full aspect-[3/3] z-10">
             <Image
               src="/images/vintage-tv.png"
               alt="Vintage TV"
               fill
               className="object-contain"
               priority
+              loading="eager"
             />
 
             {/* Sign-in Form overlaid on TV screen - positioned to the left inside the screen */}
-            <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6">
+            <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-20">
               <div className="w-full h-[55%] flex items-center justify-center">
                 <div className="w-full space-y-4">
                   {/* Logo/Title */}
@@ -79,7 +85,7 @@ export default function SignInPage() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-dark)] border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
                         placeholder="admin@studioub.ch"
                       />
                     </div>
@@ -98,7 +104,7 @@ export default function SignInPage() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-dark)] border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
                         placeholder="••••••••"
                       />
                     </div>
@@ -119,7 +125,7 @@ export default function SignInPage() {
                   )}
 
                       {/* Additional Info */}
-                      <p className="text-center text-[var(--color-cream)]/50 font-light text-[10px] mt-2">
+                      <p className="text-center text-[var(--color-cream)]/80 font-light text-[11px] mt-2">
                         Accès réservé aux administrateurs
                       </p>
                     </div>
