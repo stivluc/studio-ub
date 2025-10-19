@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
@@ -12,8 +12,33 @@ export default function SignInPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [tvStarted, setTvStarted] = useState(false);
   const router = useRouter();
   const supabase = createClient();
+
+  // Handle Enter key to start TV
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' && !tvStarted) {
+        setTvStarted(true);
+        // Play sounds manually
+        const turnOnAudio = document.getElementById('tv-turn-on-sound') as HTMLAudioElement;
+        const noiseAudio = document.getElementById('tv-noise-sound') as HTMLAudioElement;
+
+        if (turnOnAudio) {
+          turnOnAudio.play().catch(err => console.log('Sound failed:', err));
+        }
+        if (noiseAudio) {
+          setTimeout(() => {
+            noiseAudio.play().catch(err => console.log('Noise failed:', err));
+          }, 200);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [tvStarted]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,13 +66,8 @@ export default function SignInPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--color-pine)]">
-      {/* TV Audio Player - persists in DOM via useMemo */}
-      <TVAudioPlayer
-        turnOnDelay={1500}
-        noiseDelay={1500}
-        noiseVolume={0.3}
-        turnOnVolume={0.5}
-      />
+      {/* TV Audio Player - persists in DOM via useMemo - autoplay disabled */}
+      <TVAudioPlayer autoplay={false} noiseVolume={0.3} turnOnVolume={0.5} />
 
       <div className="w-full max-w-5xl">
         {/* TV Container */}
@@ -57,28 +77,50 @@ export default function SignInPage() {
             {/* Black screen with subtle grain - zooms in from small */}
             <div className="w-[75%] h-[55%] bg-[var(--color-dark)] rounded-sm animate-zoom-in" />
 
-            {/* CRT Effect - fades in after 1 second */}
-            <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 animate-fade-in animation-delay-1500">
-              <CRTEffect
-                effects={{
-                  scanlines: true,
-                  vcr: true,
-                  snow: true,
-                  vignette: false,
-                  wobble: true,
-                }}
-                intensity={{
-                  vcrOpacity: 0.6,
-                  snowOpacity: 0.15,
-                  vcrTracking: 220,
-                  vcrTapeAge: 50,
-                  vcrBlur: 1,
-                }}
-                className="w-[75%] h-[55%]"
-              >
-                <div className="w-full h-full bg-transparent rounded-sm" />
-              </CRTEffect>
-            </div>
+            {/* CRT Effect - only appears after TV is started */}
+            {tvStarted && (
+              <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 animate-fade-in">
+                <CRTEffect
+                  effects={{
+                    scanlines: true,
+                    vcr: true,
+                    snow: true,
+                    vignette: false,
+                    wobble: true,
+                  }}
+                  intensity={{
+                    vcrOpacity: 0.6,
+                    snowOpacity: 0.15,
+                    vcrTracking: 220,
+                    vcrTapeAge: 50,
+                    vcrBlur: 1,
+                  }}
+                  className="w-[75%] h-[55%]"
+                >
+                  <div className="w-full h-full bg-transparent rounded-sm" />
+                </CRTEffect>
+              </div>
+            )}
+
+            {/* "Press ENTER" message - only before TV starts */}
+            {!tvStarted && (
+              <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-10 animate-fade-in animation-delay-1000">
+                <div className="w-full h-[55%] flex items-center justify-center">
+                  <div className="inline-block">
+                    <p
+                      className="text-[var(--color-cream)] font-bold text-xl tracking-wider animate-typewriter animation-delay-1000 animate-loading-dots"
+                      style={{
+                        textShadow: '0 0 10px rgba(250, 236, 187, 0.5)',
+                        fontFamily: 'monospace',
+                        display: 'inline-block',
+                      }}
+                    >
+                      {`> PRESS ENTER TO START TV`}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* TV Image - zooms in with the dark background */}
@@ -92,12 +134,13 @@ export default function SignInPage() {
               loading="eager"
             />
 
-            {/* Sign-in Form overlaid on TV screen - positioned to the left inside the screen */}
-            <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-20">
-              <div className="w-full h-[55%] flex items-center justify-center">
-                <div className="w-full space-y-4">
-                    {/* Logo/Title - appears after CRT effect (3s) */}
-                    <div className="text-center mb-2 animate-fade-in animation-delay-3500">
+            {/* Sign-in Form overlaid on TV screen - only appears after TV is started */}
+            {tvStarted && (
+              <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-20">
+                <div className="w-full h-[55%] flex items-center justify-center">
+                  <div className="w-full space-y-4">
+                    {/* Logo/Title - appears after CRT effect */}
+                    <div className="text-center mb-2 animate-fade-in animation-delay-1500">
                       <h1 className="text-2xl font-bold text-[var(--color-cream)]">
                         Studio UB Admin
                       </h1>
@@ -105,7 +148,7 @@ export default function SignInPage() {
 
                   {/* Form */}
                   <form onSubmit={handleSignIn} className="space-y-3">
-                    <div className="animate-fade-in-up animation-delay-3700">
+                    <div className="animate-fade-in-up animation-delay-2000">
                       <label
                         htmlFor="email"
                         className="block text-xs font-medium text-[var(--color-cream)] mb-1"
@@ -124,7 +167,7 @@ export default function SignInPage() {
                       />
                     </div>
 
-                    <div className="animate-fade-in-up animation-delay-3900">
+                    <div className="animate-fade-in-up animation-delay-2200">
                       <label
                         htmlFor="password"
                         className="block text-xs font-medium text-[var(--color-cream)] mb-1"
@@ -143,7 +186,7 @@ export default function SignInPage() {
                       />
                     </div>
 
-                    <div className="space-y-1 animate-fade-in-up animation-delay-4000">
+                    <div className="space-y-1 animate-fade-in-up animation-delay-2400">
                       <button
                         type="submit"
                         disabled={loading}
@@ -167,6 +210,7 @@ export default function SignInPage() {
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
       </div>

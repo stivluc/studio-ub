@@ -117,6 +117,45 @@
   }
 }
 
+/* Typewriter effect */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Blinking cursor/dots */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Loading dots animation - 1, 2, 3, repeat */
+@keyframes loading-dots {
+  0% {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+  100% {
+    content: '';
+  }
+}
+
 /* Utility Classes */
 .animate-tv-scan-in {
   animation: tv-scan-in 1s cubic-bezier(0.23, 1.0, 0.32, 1.0) forwards;
@@ -152,6 +191,21 @@
 
 .animate-scale-in {
   animation: scale-in 0.5s ease-out forwards;
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2s steps(30, end) forwards;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-loading-dots::after {
+  content: '';
+  animation: loading-dots 1.5s steps(4, end) infinite;
 }
 
 /* Animation Delays - Generated classes from 100ms to 4000ms */
