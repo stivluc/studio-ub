@@ -4,7 +4,7 @@ import { routing } from './i18n/routing';
 export default createMiddleware(routing);
 
 export const config = {
-  // Match only internationalized pathnames
+  // Match only internationalized pathnames, excluding admin routes
   matcher: [
     // Enable a redirect to a matching locale at the root
     '/',
@@ -14,7 +14,7 @@ export const config = {
     '/(fr|en)/:path*',
 
     // Enable redirects that add missing locales
-    // (e.g. `/pathnames` -> `/en/pathnames`)
-    '/((?!_next|_vercel|.*\\..*).*)'
+    // Exclude: _next, _vercel, api, admin, and files with extensions
+    '/((?!_next|_vercel|api|admin|.*\\..*).*)'
   ]
 };
