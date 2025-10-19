@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { CRTEffect } from '@/lib/animations';
 import TVAudioPlayer from '@/components/TVAudioPlayer';
 import TVGlitchWrapper from '@/components/TVGlitchWrapper';
+import '@/lib/animations/GlassEffect.css';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -81,8 +82,10 @@ export default function SignInPage() {
         <div className="relative">
           {/* Dark background positioned inside the TV screen - BEHIND the TV */}
           <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 z-0">
-            {/* Black screen with subtle grain - zooms in from small */}
-            <div className="w-[75%] h-[55%] bg-[var(--color-dark)] rounded-sm animate-zoom-in" />
+            {/* Black screen - glass effect when OFF, grain + CRT when ON */}
+            <div
+              className={`w-[75%] h-[55%] rounded-sm animate-zoom-in ${!tvStarted ? 'glass-effect' : 'bg-[var(--color-dark)]'}`}
+            />
 
             {/* CRT Effect - only appears after TV is started */}
             {tvStarted && (
