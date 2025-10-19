@@ -1,6 +1,17 @@
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/auth/sign-in");
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-8">
@@ -13,7 +24,7 @@ export default function AdminPage() {
       </div>
 
       {/* Admin Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Portfolio Management */}
         <Link
           href="/admin/portfolio"
@@ -76,33 +87,6 @@ export default function AdminPage() {
           </p>
         </Link>
 
-        {/* Media Library */}
-        <Link
-          href="/admin/media"
-          className="bg-[var(--color-pine)] p-6 rounded-lg border border-[var(--color-cream)]/20 hover:border-[var(--color-cream)]/40 transition-all group"
-        >
-          <div className="mb-4">
-            <svg
-              className="w-12 h-12 text-[var(--color-cream)] group-hover:scale-110 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-              />
-            </svg>
-          </div>
-          <h2 className="text-2xl font-semibold text-[var(--color-cream)] mb-2">
-            Médiathèque
-          </h2>
-          <p className="text-[var(--color-cream)]/70 font-light text-sm">
-            Gérer les images et fichiers
-          </p>
-        </Link>
       </div>
 
       {/* Quick Stats */}
@@ -129,15 +113,26 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {/* Info Notice */}
-      <div className="mt-12 bg-[var(--color-brown)]/30 border border-[var(--color-brown)] rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-[var(--color-cream)] mb-2">
-          Authentification à venir
-        </h3>
-        <p className="text-[var(--color-cream)]/70 font-light">
-          Le système d&apos;authentification sera configuré prochainement. Pour
-          l&apos;instant, cette interface est accessible sans restriction.
-        </p>
+      {/* User Info */}
+      <div className="mt-12 bg-[var(--color-pine)] border border-[var(--color-cream)]/20 rounded-lg p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--color-cream)] mb-1">
+              Connecté en tant que
+            </h3>
+            <p className="text-[var(--color-cream)]/70 font-light">
+              {user.email}
+            </p>
+          </div>
+          <form action="/api/auth/sign-out" method="post">
+            <button
+              type="submit"
+              className="bg-[var(--color-brown)] text-[var(--color-cream)] px-4 py-2 rounded font-medium hover:bg-[var(--color-brown)]/80 transition-colors"
+            >
+              Déconnexion
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
