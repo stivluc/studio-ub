@@ -8,6 +8,7 @@ interface TVAudioPlayerProps {
   noiseDelay?: number;
   noiseVolume?: number;
   turnOnVolume?: number;
+  buttonVolume?: number;
 }
 
 export default function TVAudioPlayer({
@@ -16,6 +17,7 @@ export default function TVAudioPlayer({
   noiseDelay = 1500,
   noiseVolume = 0.3,
   turnOnVolume = 0.5,
+  buttonVolume = 0.4,
 }: TVAudioPlayerProps) {
   // Audio elements are memoized so they persist across re-renders
   const audioElements = useMemo(
@@ -32,17 +34,22 @@ export default function TVAudioPlayer({
           preload="auto"
           loop
         />
+        <audio
+          id="button-sound"
+          src="/sounds/button.mp3"
+          preload="auto"
+        />
       </div>
     ),
     []
   );
 
   useEffect(() => {
-    if (!autoplay) return;
-
     const turnOnAudio = document.getElementById('tv-turn-on-sound') as HTMLAudioElement;
     const noiseAudio = document.getElementById('tv-noise-sound') as HTMLAudioElement;
+    const buttonAudio = document.getElementById('button-sound') as HTMLAudioElement;
 
+    // Set volumes for all audio elements
     if (turnOnAudio) {
       turnOnAudio.volume = turnOnVolume;
     }
@@ -50,6 +57,12 @@ export default function TVAudioPlayer({
     if (noiseAudio) {
       noiseAudio.volume = noiseVolume;
     }
+
+    if (buttonAudio) {
+      buttonAudio.volume = buttonVolume;
+    }
+
+    if (!autoplay) return;
 
     // Play turn-on sound after delay
     const turnOnTimeout = setTimeout(() => {
@@ -70,7 +83,7 @@ export default function TVAudioPlayer({
       clearTimeout(turnOnTimeout);
       clearTimeout(noiseTimeout);
     };
-  }, [autoplay, turnOnDelay, noiseDelay, noiseVolume, turnOnVolume]);
+  }, [autoplay, turnOnDelay, noiseDelay, noiseVolume, turnOnVolume, buttonVolume]);
 
   return audioElements;
 }

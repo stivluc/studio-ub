@@ -53,6 +53,13 @@ export default function SignInPage() {
     setLoading(true);
     setError(null);
 
+    // Play button sound
+    const buttonSound = document.getElementById('button-sound') as HTMLAudioElement;
+    if (buttonSound) {
+      buttonSound.currentTime = 0;
+      buttonSound.play().catch(err => console.log('Button sound failed:', err));
+    }
+
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
