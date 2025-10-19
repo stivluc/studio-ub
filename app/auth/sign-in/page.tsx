@@ -33,6 +33,12 @@ export default function SignInPage() {
             noiseAudio.play().catch(err => console.log('Noise failed:', err));
           }, 200);
         }
+
+        // Focus on email input after animations (2400ms for all form animations to complete)
+        setTimeout(() => {
+          const emailInput = document.getElementById('email') as HTMLInputElement;
+          emailInput?.focus();
+        }, 2600);
       }
     };
 
@@ -137,14 +143,14 @@ export default function SignInPage() {
             {/* Sign-in Form overlaid on TV screen - only appears after TV is started */}
             {tvStarted && (
               <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-20">
-                <div className="w-full h-[55%] flex items-center justify-center">
-                  <div className="w-full space-y-4">
-                    {/* Logo/Title - appears after CRT effect */}
-                    <div className="text-center mb-2 animate-fade-in animation-delay-1500">
-                      <h1 className="text-2xl font-bold text-[var(--color-cream)]">
-                        Studio UB Admin
-                      </h1>
-                    </div>
+                  <div className="w-full h-[55%] flex items-center justify-center">
+                    <div className="w-full space-y-4">
+                      {/* Logo/Title - appears after CRT effect */}
+                      <div className="text-center mb-2 animate-fade-in animation-delay-1500">
+                        <h1 className="text-2xl font-bold text-[var(--color-cream)]">
+                          Studio UB Admin
+                        </h1>
+                      </div>
 
                   {/* Form */}
                   <form onSubmit={handleSignIn} className="space-y-3">
