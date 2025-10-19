@@ -45,29 +45,35 @@ export default function SignInPage() {
         <div className="relative">
           {/* Dark background positioned inside the TV screen - BEHIND the TV */}
           <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 z-0">
-            <CRTEffect
-              effects={{
-                scanlines: true,
-                vcr: true,
-                snow: true,
-                vignette: false,
-                wobble: true,
-              }}
-              intensity={{
-                vcrOpacity: 0.6,
-                snowOpacity: 0.15,
-                vcrTracking: 220,
-                vcrTapeAge: 50,
-                vcrBlur: 1,
-              }}
-              className="w-[75%] h-[55%]"
-            >
-              <div className="w-full h-full bg-[var(--color-dark)] rounded-sm" />
-            </CRTEffect>
+            {/* Black screen with subtle grain - always visible */}
+            <div className="w-[75%] h-[55%] bg-[var(--color-dark)] rounded-sm animate-fade-in animation-delay-500" />
+
+            {/* CRT Effect - fades in after 1 second */}
+            <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 animate-fade-in animation-delay-1500">
+              <CRTEffect
+                effects={{
+                  scanlines: true,
+                  vcr: true,
+                  snow: true,
+                  vignette: false,
+                  wobble: true,
+                }}
+                intensity={{
+                  vcrOpacity: 0.6,
+                  snowOpacity: 0.15,
+                  vcrTracking: 220,
+                  vcrTapeAge: 50,
+                  vcrBlur: 1,
+                }}
+                className="w-[75%] h-[55%]"
+              >
+                <div className="w-full h-full bg-transparent rounded-sm" />
+              </CRTEffect>
+            </div>
           </div>
 
-          {/* TV Image */}
-          <div className="relative w-full aspect-[3/3] z-10">
+          {/* TV Image - appears at the start */}
+          <div className="relative w-full aspect-[3/3] z-10 animate-fade-in animation-delay-500">
             <Image
               src="/images/vintage-tv.png"
               alt="Vintage TV"
@@ -79,10 +85,10 @@ export default function SignInPage() {
 
             {/* Sign-in Form overlaid on TV screen - positioned to the left inside the screen */}
             <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-20">
-              <div className="w-full h-[55%] flex items-center justify-center animate-tv-scan-in">
+              <div className="w-full h-[55%] flex items-center justify-center">
                 <div className="w-full space-y-4">
-                    {/* Logo/Title */}
-                    <div className="text-center mb-2 animate-fade-in-down animation-delay-300">
+                    {/* Logo/Title - appears after CRT effect (3s) */}
+                    <div className="text-center mb-2 animate-fade-in animation-delay-3500">
                       <h1 className="text-2xl font-bold text-[var(--color-cream)]">
                         Studio UB Admin
                       </h1>
@@ -90,7 +96,7 @@ export default function SignInPage() {
 
                   {/* Form */}
                   <form onSubmit={handleSignIn} className="space-y-3">
-                    <div className="animate-fade-in-up animation-delay-400">
+                    <div className="animate-fade-in-up animation-delay-4000">
                       <label
                         htmlFor="email"
                         className="block text-xs font-medium text-[var(--color-cream)] mb-1"
@@ -109,7 +115,7 @@ export default function SignInPage() {
                       />
                     </div>
 
-                    <div className="animate-fade-in-up animation-delay-500">
+                    <div className="animate-fade-in-up animation-delay-4000">
                       <label
                         htmlFor="password"
                         className="block text-xs font-medium text-[var(--color-cream)] mb-1"
@@ -128,7 +134,7 @@ export default function SignInPage() {
                       />
                     </div>
 
-                    <div className="space-y-1 animate-fade-in-up animation-delay-600">
+                    <div className="space-y-1 animate-fade-in-up animation-delay-4000">
                       <button
                         type="submit"
                         disabled={loading}
