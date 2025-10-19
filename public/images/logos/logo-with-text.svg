@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-e16f5775-7c76-4314-84b3-0cbf652621dd" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.26 239.78">
+  <defs>
+    <style>
+      .uuid-29089626-731d-4159-8c4d-07e27cb9737b {
+        font-family: SemplicitaPro, 'Semplicita Pro';
+        font-size: 32px;
+        letter-spacing: .03em;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <polygon points="146.47 52.71 133.69 44.06 133.69 162.31 146.47 158.73 146.47 52.71"/>
+      <polygon points="110.24 28.19 110.24 134.48 70.47 145.62 70.47 77.77 33.43 52.69 33.43 156.01 70.46 180.02 124.78 164.8 124.78 38.04 110.24 28.19"/>
+    </g>
+    <ellipse cx="188.42" cy="77.56" rx="24.14" ry="24.22"/>
+    <path d="M189.2,110.69h-5.39c-10.67,0-19.32,8.65-19.32,19.32v27.14h24.71c12.79,0,23.16-10.4,23.16-23.23s-10.37-23.23-23.16-23.23Z"/>
+  </g>
+  <text class="uuid-29089626-731d-4159-8c4d-07e27cb9737b" transform="translate(33.28 222.16)"><tspan x="0" y="0">STUDIO UB</tspan></text>
+</svg>
