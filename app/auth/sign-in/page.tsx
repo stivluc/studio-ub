@@ -39,11 +39,11 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--color-dark)]">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--color-pine)]">
       <div className="w-full max-w-5xl">
         {/* TV Container */}
         <div className="relative">
-          {/* Green background positioned inside the TV screen - BEHIND the TV */}
+          {/* Dark background positioned inside the TV screen - BEHIND the TV */}
           <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 z-0">
             <CRTEffect
               effects={{
@@ -62,7 +62,7 @@ export default function SignInPage() {
               }}
               className="w-[75%] h-[55%]"
             >
-              <div className="w-full h-full bg-[var(--color-pine)] rounded-sm" />
+              <div className="w-full h-full bg-[var(--color-dark)] rounded-sm" />
             </CRTEffect>
           </div>
 
@@ -104,7 +104,7 @@ export default function SignInPage() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-dark)] border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
                         placeholder="admin@studioub.ch"
                       />
                     </div>
@@ -123,7 +123,7 @@ export default function SignInPage() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-dark)] border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
                         placeholder="••••••••"
                       />
                     </div>
@@ -132,7 +132,7 @@ export default function SignInPage() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-2 px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                        className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-2 px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
                       >
                         {loading ? 'Connexion...' : 'Se connecter'}
                       </button>
