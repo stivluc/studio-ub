@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../lib/animations/animations.css";
 
 /* Semplicita Pro Font Face Declarations */
 @font-face {

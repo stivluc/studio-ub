@@ -79,10 +79,10 @@ export default function SignInPage() {
 
             {/* Sign-in Form overlaid on TV screen - positioned to the left inside the screen */}
             <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-20">
-              <div className="w-full h-[55%] flex items-center justify-center">
+              <div className="w-full h-[55%] flex items-center justify-center animate-tv-scan-in">
                 <div className="w-full space-y-4">
                     {/* Logo/Title */}
-                    <div className="text-center mb-2">
+                    <div className="text-center mb-2 animate-fade-in-down animation-delay-300">
                       <h1 className="text-2xl font-bold text-[var(--color-cream)]">
                         Studio UB Admin
                       </h1>
@@ -90,7 +90,7 @@ export default function SignInPage() {
 
                   {/* Form */}
                   <form onSubmit={handleSignIn} className="space-y-3">
-                    <div>
+                    <div className="animate-fade-in-up animation-delay-400">
                       <label
                         htmlFor="email"
                         className="block text-xs font-medium text-[var(--color-cream)] mb-1"
@@ -109,7 +109,7 @@ export default function SignInPage() {
                       />
                     </div>
 
-                    <div>
+                    <div className="animate-fade-in-up animation-delay-500">
                       <label
                         htmlFor="password"
                         className="block text-xs font-medium text-[var(--color-cream)] mb-1"
@@ -128,7 +128,7 @@ export default function SignInPage() {
                       />
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="space-y-1 animate-fade-in-up animation-delay-600">
                       <button
                         type="submit"
                         disabled={loading}
