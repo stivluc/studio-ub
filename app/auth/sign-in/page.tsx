@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { CRTEffect } from '@/lib/animations';
 import TVAudioPlayer from '@/components/TVAudioPlayer';
 import TVGlitchWrapper from '@/components/TVGlitchWrapper';
+import { fadeOutAudio, playAudio } from '@/lib/utils/audioFade';
 import '@/lib/animations/GlassEffect.css';
 
 export default function SignInPage() {
@@ -48,17 +49,15 @@ export default function SignInPage() {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [tvStarted]);
 
+  const handleButtonClick = () => {
+    // Play button sound (even if form is invalid)
+    playAudio('button-sound');
+  };
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
-    // Play button sound
-    const buttonSound = document.getElementById('button-sound') as HTMLAudioElement;
-    if (buttonSound) {
-      buttonSound.currentTime = 0;
-      buttonSound.play().catch(err => console.log('Button sound failed:', err));
-    }
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -69,13 +68,21 @@ export default function SignInPage() {
       if (error) throw error;
 
       if (data.session) {
-        router.push('/admin');
-        router.refresh();
+        // Fade out TV noise sound
+        const noiseAudio = document.getElementById('tv-noise-sound') as HTMLAudioElement;
+        if (noiseAudio) {
+          fadeOutAudio(noiseAudio, 1000);
+        }
+
+        // Redirect after fade starts (keep loading state until redirect)
+        setTimeout(() => {
+          router.push('/admin');
+          router.refresh();
+        }, 500);
       }
     } catch (err: any) {
       setError(err.message || 'Erreur de connexion');
-    } finally {
-      setLoading(false);
+      setLoading(false); // Only set loading to false on error
     }
   };
 
@@ -213,6 +220,7 @@ export default function SignInPage() {
                           <button
                             type="submit"
                             disabled={loading}
+                            onClick={handleButtonClick}
                             className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-2 px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
                           >
                             {loading ? 'Connexion...' : 'Se connecter'}
