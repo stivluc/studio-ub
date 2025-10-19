@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { CRTEffect } from '@/lib/animations';
 import TVAudioPlayer from '@/components/TVAudioPlayer';
 import TVGlitchWrapper from '@/components/TVGlitchWrapper';
+import TypewriterText from '@/components/TypewriterText';
 import { fadeOutAudio, playAudio } from '@/lib/utils/audioFade';
 import '@/lib/animations/GlassEffect.css';
 
@@ -134,19 +135,20 @@ export default function SignInPage() {
             {/* "Press ENTER" message - only before TV starts */}
             {!tvStarted && (
               <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-10 animate-fade-in animation-delay-1000">
-                <div className="w-full h-[55%] flex items-center justify-center">
-                  <div className="inline-block">
-                    <p
-                      className="text-[var(--color-cream)] font-bold text-xl tracking-wider animate-typewriter animation-delay-1000 animate-loading-dots"
-                      style={{
-                        textShadow: '0 0 10px rgba(250, 236, 187, 0.5)',
-                        fontFamily: 'monospace',
-                        display: 'inline-block',
-                      }}
-                    >
-                      {`> PRESS ENTER TO START TV`}
-                    </p>
-                  </div>
+                <div className="w-full h-[55%] flex items-center justify-center px-4">
+                  <p
+                    className="text-[var(--color-cream)] font-bold text-lg tracking-wider whitespace-nowrap"
+                    style={{
+                      textShadow: '0 0 10px rgba(250, 236, 187, 0.5)',
+                      fontFamily: 'monospace',
+                    }}
+                  >
+                    <TypewriterText
+                      text="> PRESS ENTER TO START TV"
+                      delay={1000}
+                      showLoadingDots={true}
+                    />
+                  </p>
                 </div>
               </div>
             )}

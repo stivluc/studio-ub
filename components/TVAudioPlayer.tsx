@@ -10,6 +10,7 @@ interface TVAudioPlayerProps {
   turnOnVolume?: number;
   buttonVolume?: number;
   clickVolume?: number;
+  typewriterVolume?: number;
 }
 
 export default function TVAudioPlayer({
@@ -20,6 +21,7 @@ export default function TVAudioPlayer({
   turnOnVolume = 0.5,
   buttonVolume = 0.4,
   clickVolume = 0.3,
+  typewriterVolume = 0.25,
 }: TVAudioPlayerProps) {
   // Audio elements are memoized so they persist across re-renders
   const audioElements = useMemo(
@@ -46,6 +48,11 @@ export default function TVAudioPlayer({
           src="/sounds/click.mp3"
           preload="auto"
         />
+        <audio
+          id="typewriter-sound"
+          src="/sounds/typewriter.mp3"
+          preload="auto"
+        />
       </div>
     ),
     []
@@ -56,6 +63,7 @@ export default function TVAudioPlayer({
     const noiseAudio = document.getElementById('tv-noise-sound') as HTMLAudioElement;
     const buttonAudio = document.getElementById('button-sound') as HTMLAudioElement;
     const clickAudio = document.getElementById('click-sound') as HTMLAudioElement;
+    const typewriterAudio = document.getElementById('typewriter-sound') as HTMLAudioElement;
 
     // Set volumes for all audio elements
     if (turnOnAudio) {
@@ -72,6 +80,10 @@ export default function TVAudioPlayer({
 
     if (clickAudio) {
       clickAudio.volume = clickVolume;
+    }
+
+    if (typewriterAudio) {
+      typewriterAudio.volume = typewriterVolume;
     }
 
     if (!autoplay) return;
@@ -95,7 +107,7 @@ export default function TVAudioPlayer({
       clearTimeout(turnOnTimeout);
       clearTimeout(noiseTimeout);
     };
-  }, [autoplay, turnOnDelay, noiseDelay, noiseVolume, turnOnVolume, buttonVolume, clickVolume]);
+  }, [autoplay, turnOnDelay, noiseDelay, noiseVolume, turnOnVolume, buttonVolume, clickVolume, typewriterVolume]);
 
   return audioElements;
 }
