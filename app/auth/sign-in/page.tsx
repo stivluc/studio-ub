@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { CRTEffect } from '@/lib/animations';
-import { useTVSound } from '@/lib/hooks/useTVSound';
+import TVAudioPlayer from '@/components/TVAudioPlayer';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -14,14 +14,6 @@ export default function SignInPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const supabase = createClient();
-
-  // TV sounds: turn-on at 1500ms, noise loop starts at 1500ms
-  useTVSound({
-    turnOnDelay: 1500,
-    noiseDelay: 1500,
-    noiseVolume: 0.3,
-    turnOnVolume: 0.5,
-  });
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,6 +41,14 @@ export default function SignInPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--color-pine)]">
+      {/* TV Audio Player - persists in DOM via useMemo */}
+      <TVAudioPlayer
+        turnOnDelay={1500}
+        noiseDelay={1500}
+        noiseVolume={0.3}
+        turnOnVolume={0.5}
+      />
+
       <div className="w-full max-w-5xl">
         {/* TV Container */}
         <div className="relative">
