@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { CRTEffect } from '@/lib/animations';
+import { useTVSound } from '@/lib/hooks/useTVSound';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -13,6 +14,14 @@ export default function SignInPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const supabase = createClient();
+
+  // TV sounds: turn-on at 1500ms, noise loop starts at 1500ms
+  useTVSound({
+    turnOnDelay: 1500,
+    noiseDelay: 1500,
+    noiseVolume: 0.3,
+    turnOnVolume: 0.5,
+  });
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
