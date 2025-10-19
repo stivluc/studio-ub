@@ -45,8 +45,8 @@ export default function SignInPage() {
         <div className="relative">
           {/* Dark background positioned inside the TV screen - BEHIND the TV */}
           <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 z-0">
-            {/* Black screen with subtle grain - always visible */}
-            <div className="w-[75%] h-[55%] bg-[var(--color-dark)] rounded-sm animate-fade-in animation-delay-500" />
+            {/* Black screen with subtle grain - zooms in from small */}
+            <div className="w-[75%] h-[55%] bg-[var(--color-dark)] rounded-sm animate-zoom-in" />
 
             {/* CRT Effect - fades in after 1 second */}
             <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 animate-fade-in animation-delay-1500">
@@ -72,8 +72,8 @@ export default function SignInPage() {
             </div>
           </div>
 
-          {/* TV Image - appears at the start */}
-          <div className="relative w-full aspect-[3/3] z-10 animate-fade-in animation-delay-500">
+          {/* TV Image - zooms in with the dark background */}
+          <div className="relative w-full aspect-[3/3] z-10 animate-zoom-in">
             <Image
               src="/images/vintage-tv.png"
               alt="Vintage TV"
@@ -96,7 +96,7 @@ export default function SignInPage() {
 
                   {/* Form */}
                   <form onSubmit={handleSignIn} className="space-y-3">
-                    <div className="animate-fade-in-up animation-delay-4000">
+                    <div className="animate-fade-in-up animation-delay-3700">
                       <label
                         htmlFor="email"
                         className="block text-xs font-medium text-[var(--color-cream)] mb-1"
@@ -115,7 +115,7 @@ export default function SignInPage() {
                       />
                     </div>
 
-                    <div className="animate-fade-in-up animation-delay-4000">
+                    <div className="animate-fade-in-up animation-delay-3900">
                       <label
                         htmlFor="password"
                         className="block text-xs font-medium text-[var(--color-cream)] mb-1"
