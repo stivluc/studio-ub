@@ -1,0 +1,103 @@
+/* TV Glitch Effect - Vintage TV image distortion */
+/* CSS-only glitch that can be applied directly to elements */
+
+/* Glitch animation - triggered randomly */
+@keyframes tv-glitch-shift {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes tv-glitch-opacity {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes tv-glitch-skew {
+  0%, 100% {
+    transform: skewX(0deg);
+  }
+  30% {
+    transform: skewX(1deg);
+  }
+  70% {
+    transform: skewX(-1deg);
+  }
+}
+
+/* RGB split effect for text */
+@keyframes tv-glitch-text-shadow {
+  0%, 100% {
+    text-shadow: none;
+  }
+  33% {
+    text-shadow:
+      -1px 0 rgba(255, 0, 0, 0.5),
+      1px 0 rgba(0, 255, 255, 0.5);
+  }
+  66% {
+    text-shadow:
+      1px 0 rgba(255, 0, 0, 0.5),
+      -1px 0 rgba(0, 255, 255, 0.5);
+  }
+}
+
+/* RGB split effect for non-text elements */
+@keyframes tv-glitch-filter {
+  0%, 100% {
+    filter: none;
+  }
+  50% {
+    filter: contrast(1.1) brightness(0.95);
+  }
+}
+
+/* Active glitch state - low intensity */
+.tv-glitch-low.tv-glitching {
+  animation:
+    tv-glitch-shift 0.15s ease-in-out,
+    tv-glitch-opacity 0.15s ease-in-out,
+    tv-glitch-filter 0.15s ease-in-out;
+}
+
+/* Active glitch state - medium intensity */
+.tv-glitch-medium.tv-glitching {
+  animation:
+    tv-glitch-shift 0.25s ease-in-out,
+    tv-glitch-opacity 0.25s ease-in-out,
+    tv-glitch-skew 0.25s ease-in-out,
+    tv-glitch-filter 0.25s ease-in-out;
+}
+
+/* Active glitch state - high intensity */
+.tv-glitch-high.tv-glitching {
+  animation:
+    tv-glitch-shift 0.3s ease-in-out,
+    tv-glitch-skew 0.3s ease-in-out,
+    tv-glitch-opacity 0.3s ease-in-out,
+    tv-glitch-filter 0.3s ease-in-out;
+}
+
+/* Apply text shadow animation to text elements when glitching */
+.tv-glitching {
+  animation: tv-glitch-text-shadow 0.2s ease-in-out;
+}

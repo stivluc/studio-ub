@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { CRTEffect } from '@/lib/animations';
 import TVAudioPlayer from '@/components/TVAudioPlayer';
+import TVGlitchWrapper from '@/components/TVGlitchWrapper';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -143,7 +144,13 @@ export default function SignInPage() {
             {/* Sign-in Form overlaid on TV screen - only appears after TV is started */}
             {tvStarted && (
               <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-20">
-                  <div className="w-full h-[55%] flex items-center justify-center">
+                <div className="w-full h-[55%] flex items-center justify-center">
+                  <TVGlitchWrapper
+                    enabled={tvStarted}
+                    intensity="low"
+                    frequency={8}
+                    selector="h1, input, button"
+                  >
                     <div className="w-full space-y-4">
                       {/* Logo/Title - appears after CRT effect */}
                       <div className="text-center mb-2 animate-fade-in animation-delay-1500">
@@ -152,54 +159,54 @@ export default function SignInPage() {
                         </h1>
                       </div>
 
-                  {/* Form */}
-                  <form onSubmit={handleSignIn} className="space-y-3">
-                    <div className="animate-fade-in-up animation-delay-2000">
-                      <label
-                        htmlFor="email"
-                        className="block text-xs font-medium text-[var(--color-cream)] mb-1"
-                      >
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        disabled={loading}
-                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
-                        placeholder="admin@studioub.ch"
-                      />
-                    </div>
+                      {/* Form */}
+                      <form onSubmit={handleSignIn} className="space-y-3">
+                        <div className="animate-fade-in-up animation-delay-2000">
+                          <label
+                            htmlFor="email"
+                            className="block text-xs font-medium text-[var(--color-cream)] mb-1"
+                          >
+                            Email
+                          </label>
+                          <input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            disabled={loading}
+                            className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                            placeholder="admin@studioub.ch"
+                          />
+                        </div>
 
-                    <div className="animate-fade-in-up animation-delay-2200">
-                      <label
-                        htmlFor="password"
-                        className="block text-xs font-medium text-[var(--color-cream)] mb-1"
-                      >
-                        Mot de passe
-                      </label>
-                      <input
-                        id="password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        disabled={loading}
-                        className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
-                        placeholder="••••••••"
-                      />
-                    </div>
+                        <div className="animate-fade-in-up animation-delay-2200">
+                          <label
+                            htmlFor="password"
+                            className="block text-xs font-medium text-[var(--color-cream)] mb-1"
+                          >
+                            Mot de passe
+                          </label>
+                          <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            disabled={loading}
+                            className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                            placeholder="••••••••"
+                          />
+                        </div>
 
-                    <div className="space-y-1 animate-fade-in-up animation-delay-2400">
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-2 px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
-                      >
-                        {loading ? 'Connexion...' : 'Se connecter'}
-                      </button>
+                        <div className="space-y-1 animate-fade-in-up animation-delay-2400">
+                          <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-2 px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
+                          >
+                            {loading ? 'Connexion...' : 'Se connecter'}
+                          </button>
                                         {/* Error Message */}
                   {error && (
                     <div className="bg-red-900/30 border border-red-500/50 rounded p-2 mb-2 mt-2">
@@ -207,15 +214,16 @@ export default function SignInPage() {
                     </div>
                   )}
 
-                      {/* Additional Info */}
-                      <p className="text-center text-[var(--color-cream)]/80 font-light text-[11px] mt-2">
-                        Accès réservé aux administrateurs
-                      </p>
+                          {/* Additional Info */}
+                          <p className="text-center text-[var(--color-cream)]/80 font-light text-[11px] mt-2">
+                            Accès réservé aux administrateurs
+                          </p>
+                        </div>
+                      </form>
                     </div>
-                  </form>
+                  </TVGlitchWrapper>
                 </div>
               </div>
-            </div>
             )}
           </div>
         </div>
