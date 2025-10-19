@@ -1,0 +1,47 @@
+{
+  "common": {
+    "language": "Langue",
+    "french": "Français",
+    "english": "Anglais"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Test du Thème Studio UB",
+    "subtitle": "Test de la police Semplicita Pro et des couleurs de la marque",
+    "heading2": "Titre Niveau 2 - Bold (700)",
+    "heading3": "Titre Niveau 3 - SemiBold (600)",
+    "heading4": "Titre Niveau 4 - Medium (500)",
+    "heading5": "Titre Niveau 5 - Regular (400)",
+    "heading6": "Titre Niveau 6 - Light (300)",
+    "bodyLight": "Ceci est du texte de corps utilisant Semplicita Pro Light (300). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "bodyRegular": "Ceci est du texte de corps utilisant Semplicita Pro Regular (400). Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "bodyMedium": "Ceci est du texte de corps utilisant Semplicita Pro Medium (500). Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "colorPalette": "Palette de Couleurs",
+    "pinePrimary": "Pin (Primaire)",
+    "darkBilliardGreen": "Vert billard foncé",
+    "cream": "Crème",
+    "beigeAccent": "Accent beige/crème",
+    "brown": "Marron",
+    "darkBrown": "Marron foncé",
+    "light": "Clair",
+    "lightBeige": "Beige clair",
+    "dark": "Foncé",
+    "nearBlack": "Presque noir",
+    "logoVariations": "Variations du Logo",
+    "textLogoBeige": "Logo Texte - Beige",
+    "textLogoGreen": "Logo Texte - Vert",
+    "interactiveElements": "Éléments Interactifs",
+    "primaryButton": "Bouton Principal",
+    "secondaryButton": "Bouton Secondaire",
+    "brownButton": "Bouton Marron",
+    "linkText": "Ceci est un lien texte avec soulignement au survol",
+    "secondaryText": "Ce texte utilise 70% d'opacité pour les informations secondaires",
+    "footerText": "Studio UB - Test de Configuration du Thème"
+  }
+}
