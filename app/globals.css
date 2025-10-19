@@ -121,7 +121,7 @@
   --font-weight-bold: 700;
 
   /* Spacing scale for consistent grain texture patterns */
-  --grain-opacity: 0.03;
+  --grain-opacity: 0.15;
 }
 
 body {
@@ -133,7 +133,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Grain texture effect */
+/* Grain texture effect - Billiard table feel */
 body::before {
   content: '';
   position: fixed;
