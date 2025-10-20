@@ -50,7 +50,7 @@ export default function SignInPage() {
 
     // Focus on email input after animations (2400ms for all form animations to complete)
     setTimeout(() => {
-      const emailInput = document.getElementById('email') as HTMLInputElement;
+      const emailInput = (document.getElementById('email') || document.getElementById('email-mobile')) as HTMLInputElement;
       emailInput?.focus();
     }, 2600);
   };
@@ -114,7 +114,148 @@ export default function SignInPage() {
       {/* TV Audio Player - persists in DOM via useMemo - autoplay disabled */}
       <TVAudioPlayer autoplay={false} noiseVolume={0.3} turnOnVolume={0.5} />
 
-      <div className="w-full max-w-5xl">
+      {/* Mobile version (< 600px) - Full screen TV */}
+      <div className="max-[599px]:block hidden w-full h-screen relative" onClick={!tvStarted ? startTV : undefined} style={{ cursor: !tvStarted ? 'pointer' : 'default' }}>
+        {/* Full screen black background with glass effect when OFF */}
+        <div className={`absolute inset-0 ${!tvStarted ? 'glass-effect' : 'bg-[var(--color-dark)]'}`} />
+
+        {/* CRT Effect - full screen when TV is started */}
+        {tvStarted && (
+          <div className="absolute inset-0">
+            <CRTEffect
+              effects={{
+                scanlines: true,
+                vcr: true,
+                snow: true,
+                vignette: false,
+                wobble: true,
+              }}
+              intensity={{
+                vcrOpacity: 0.6,
+                snowOpacity: 0.15,
+                vcrTracking: 220,
+                vcrTapeAge: 50,
+                vcrBlur: 1,
+              }}
+              className="w-full h-full"
+            >
+              <div className="w-full h-full bg-transparent" />
+            </CRTEffect>
+          </div>
+        )}
+
+        {/* "TAP TO START TV" message - centered, only before TV starts */}
+        {!tvStarted && (
+          <div className="absolute inset-0 flex items-center justify-center animate-fade-in animation-delay-1000 pointer-events-none" style={{ zIndex: 25 }}>
+            <div className="px-4">
+              <p
+                className="text-[var(--color-cream)] font-bold text-sm tracking-wider whitespace-nowrap"
+                style={{
+                  textShadow: '0 0 10px rgba(250, 236, 187, 0.5)',
+                  fontFamily: 'monospace',
+                }}
+              >
+                <TypewriterText
+                  text="> TAP TO START TV"
+                  delay={1000}
+                  showLoadingDots={true}
+                />
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Sign-in Form overlaid - centered, only appears after TV is started */}
+        {tvStarted && (
+          <div className="absolute inset-0 flex items-center justify-center z-20 px-6">
+            <div className="w-full max-w-sm">
+              <TVGlitchWrapper
+                enabled={tvStarted}
+                intensity="low"
+                frequency={8}
+                selector="h1, input, button"
+              >
+                <div className="w-full space-y-3">
+                {/* Logo/Title */}
+                <div className="text-center mb-2 animate-fade-in animation-delay-1500">
+                  <h1 className="text-xl font-bold text-[var(--color-cream)]">
+                    Studio UB Admin
+                  </h1>
+                </div>
+
+                {/* Form */}
+                <form onSubmit={handleSignIn} className="space-y-2">
+                  <div className="animate-fade-in-up animation-delay-2000">
+                    <label
+                      htmlFor="email-mobile"
+                      className="block text-xs font-medium text-[var(--color-cream)] mb-1"
+                    >
+                      Email
+                    </label>
+                    <input
+                      id="email-mobile"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      onFocus={handleInputFocus}
+                      required
+                      disabled={loading}
+                      className="w-full px-3 py-2 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                      placeholder="admin@studioub.ch"
+                    />
+                  </div>
+
+                  <div className="animate-fade-in-up animation-delay-2200">
+                    <label
+                      htmlFor="password-mobile"
+                      className="block text-xs font-medium text-[var(--color-cream)] mb-1"
+                    >
+                      Mot de passe
+                    </label>
+                    <input
+                      id="password-mobile"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      onFocus={handleInputFocus}
+                      required
+                      disabled={loading}
+                      className="w-full px-3 py-2 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                      placeholder="••••••••"
+                    />
+                  </div>
+
+                  <div className="space-y-1 animate-fade-in-up animation-delay-2400">
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      onClick={handleButtonClick}
+                      className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-2 px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
+                    >
+                      {loading ? 'Connexion...' : 'Se connecter'}
+                    </button>
+                    {/* Error Message */}
+                    {error && (
+                      <div className="bg-red-900/30 border border-red-500/50 rounded p-2 mt-2">
+                        <p className="text-red-200 text-xs font-light">{error}</p>
+                      </div>
+                    )}
+
+                    {/* Additional Info */}
+                    <p className="text-center text-[var(--color-cream)]/80 font-light text-[10px] mt-2">
+                      Accès réservé aux administrateurs
+                    </p>
+                  </div>
+                </form>
+                </div>
+              </TVGlitchWrapper>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Desktop version (>= 600px) - TV with frame */}
+      <div className="max-[599px]:hidden w-full max-w-5xl">
         {/* TV Container */}
         <div className="relative" onClick={!tvStarted ? startTV : undefined} style={{ cursor: !tvStarted ? 'pointer' : 'default' }}>
           {/* Dark background positioned inside the TV screen - BEHIND the TV */}

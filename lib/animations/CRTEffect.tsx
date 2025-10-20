@@ -85,6 +85,9 @@ export default function CRTEffect({
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
+      // Skip if canvas has no valid dimensions yet
+      if (canvas.width === 0 || canvas.height === 0 || !isFinite(canvas.width) || !isFinite(canvas.height)) return;
+
       const radius = 2;
       const xmax = canvas.width;
       const ymax = canvas.height;
@@ -122,6 +125,10 @@ export default function CRTEffect({
 
       const w = canvas.width;
       const h = canvas.height;
+
+      // Skip if canvas has no valid dimensions yet
+      if (w === 0 || h === 0 || !isFinite(w) || !isFinite(h)) return;
+
       const d = ctx.createImageData(w, h);
       const b = new Uint32Array(d.data.buffer);
       const len = b.length;
