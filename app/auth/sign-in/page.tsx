@@ -115,9 +115,9 @@ export default function SignInPage() {
       <TVAudioPlayer autoplay={false} noiseVolume={0.3} turnOnVolume={0.5} />
 
       {/* Mobile version (< 600px) - Full screen TV */}
-      <div className="max-[599px]:block hidden w-full h-screen relative" onClick={!tvStarted ? startTV : undefined} style={{ cursor: !tvStarted ? 'pointer' : 'default' }}>
+      <div className="max-[599px]:block hidden w-full h-screen relative bg-[var(--color-dark)]" onClick={!tvStarted ? startTV : undefined} style={{ cursor: !tvStarted ? 'pointer' : 'default' }}>
         {/* Full screen black background with glass effect when OFF */}
-        <div className={`absolute inset-0 ${!tvStarted ? 'glass-effect' : 'bg-[var(--color-dark)]'}`} />
+        <div className={`absolute inset-0 ${!tvStarted ? 'glass-effect' : ''}`} />
 
         {/* CRT Effect - full screen when TV is started */}
         {tvStarted && (
