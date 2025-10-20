@@ -122,7 +122,7 @@
   --font-weight-bold: 700;
 
   /* Spacing scale for consistent grain texture patterns */
-  --grain-opacity: 0.15;
+  --grain-opacity: 0.10;
 }
 
 body {
