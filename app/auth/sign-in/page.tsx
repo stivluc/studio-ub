@@ -135,9 +135,9 @@ export default function SignInPage() {
             {/* "Press ENTER" message - only before TV starts */}
             {!tvStarted && (
               <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-10 animate-fade-in animation-delay-1000">
-                <div className="w-full h-[55%] flex items-center justify-center px-4">
+                <div className="w-full h-[55%] flex items-center justify-center px-2 sm:px-4">
                   <p
-                    className="text-[var(--color-cream)] font-bold text-lg tracking-wider whitespace-nowrap"
+                    className="text-[var(--color-cream)] font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-wider whitespace-nowrap"
                     style={{
                       textShadow: '0 0 10px rgba(250, 236, 187, 0.5)',
                       fontFamily: 'monospace',
@@ -175,20 +175,20 @@ export default function SignInPage() {
                     frequency={8}
                     selector="h1, input, button"
                   >
-                    <div className="w-full space-y-4">
+                    <div className="w-full space-y-3 sm:space-y-4">
                       {/* Logo/Title - appears after CRT effect */}
-                      <div className="text-center mb-2 animate-fade-in animation-delay-1500">
-                        <h1 className="text-2xl font-bold text-[var(--color-cream)]">
+                      <div className="text-center mb-1 sm:mb-2 animate-fade-in animation-delay-1500">
+                        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--color-cream)]">
                           Studio UB Admin
                         </h1>
                       </div>
 
                       {/* Form */}
-                      <form onSubmit={handleSignIn} className="space-y-3">
+                      <form onSubmit={handleSignIn} className="space-y-2 sm:space-y-3">
                         <div className="animate-fade-in-up animation-delay-2000">
                           <label
                             htmlFor="email"
-                            className="block text-xs font-medium text-[var(--color-cream)] mb-1"
+                            className="block text-[10px] sm:text-xs font-medium text-[var(--color-cream)] mb-1"
                           >
                             Email
                           </label>
@@ -200,7 +200,7 @@ export default function SignInPage() {
                             onFocus={handleInputFocus}
                             required
                             disabled={loading}
-                            className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                            className="w-full px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
                             placeholder="admin@studioub.ch"
                           />
                         </div>
@@ -208,7 +208,7 @@ export default function SignInPage() {
                         <div className="animate-fade-in-up animation-delay-2200">
                           <label
                             htmlFor="password"
-                            className="block text-xs font-medium text-[var(--color-cream)] mb-1"
+                            className="block text-[10px] sm:text-xs font-medium text-[var(--color-cream)] mb-1"
                           >
                             Mot de passe
                           </label>
@@ -220,7 +220,7 @@ export default function SignInPage() {
                             onFocus={handleInputFocus}
                             required
                             disabled={loading}
-                            className="w-full px-3 py-1.5 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                            className="w-full px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
                             placeholder="••••••••"
                           />
                         </div>
@@ -230,7 +230,7 @@ export default function SignInPage() {
                             type="submit"
                             disabled={loading}
                             onClick={handleButtonClick}
-                            className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-2 px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
+                            className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-1.5 sm:py-2 px-3 sm:px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm cursor-pointer"
                           >
                             {loading ? 'Connexion...' : 'Se connecter'}
                           </button>
@@ -242,7 +242,7 @@ export default function SignInPage() {
                   )}
 
                           {/* Additional Info */}
-                          <p className="text-center text-[var(--color-cream)]/80 font-light text-[11px] mt-2">
+                          <p className="text-center text-[var(--color-cream)]/80 font-light text-[9px] sm:text-[10px] md:text-[11px] mt-2">
                             Accès réservé aux administrateurs
                           </p>
                         </div>

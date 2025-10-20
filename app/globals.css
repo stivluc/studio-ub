@@ -149,11 +149,46 @@ body::before {
   background-repeat: repeat;
 }
 
-/* Headings use Bold weight */
+/* Headings use Bold weight with responsive sizing */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-weight-bold);
   color: var(--color-cream);
+}
+
+/* Responsive typography scale */
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+h4 {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+}
+
+h5 {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+h6 {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
+/* Responsive body text */
+body {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
+/* Responsive paragraph spacing */
+p {
+  margin-bottom: clamp(0.5rem, 2vw, 1rem);
 }
 
 /* Body text uses Light weight */
