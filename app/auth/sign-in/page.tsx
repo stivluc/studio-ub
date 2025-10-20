@@ -110,7 +110,7 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--color-pine)]">
+    <div className="min-h-screen flex items-center justify-center max-[599px]:p-0 p-4 bg-[var(--color-pine)]">
       {/* TV Audio Player - persists in DOM via useMemo - autoplay disabled */}
       <TVAudioPlayer autoplay={false} noiseVolume={0.3} turnOnVolume={0.5} />
 
@@ -200,7 +200,7 @@ export default function SignInPage() {
                       onFocus={handleInputFocus}
                       required
                       disabled={loading}
-                      className="w-full px-3 py-2 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                      className="w-full px-3 py-2 text-base bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
                       placeholder="admin@studioub.ch"
                     />
                   </div>
@@ -220,7 +220,7 @@ export default function SignInPage() {
                       onFocus={handleInputFocus}
                       required
                       disabled={loading}
-                      className="w-full px-3 py-2 text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
+                      className="w-full px-3 py-2 text-base bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
                       placeholder="••••••••"
                     />
                   </div>
