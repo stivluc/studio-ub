@@ -186,8 +186,8 @@ body {
   font-size: clamp(0.875rem, 1.5vw, 1rem);
 }
 
-/* Responsive paragraph spacing */
-p {
+/* Responsive paragraph spacing - only for regular content paragraphs */
+p:not(:last-child) {
   margin-bottom: clamp(0.5rem, 2vw, 1rem);
 }
 

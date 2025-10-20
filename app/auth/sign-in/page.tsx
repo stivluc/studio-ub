@@ -117,7 +117,7 @@ export default function SignInPage() {
       {/* Mobile version (< 600px) - Full screen TV */}
       <div className="max-[599px]:block hidden w-full h-screen relative bg-[var(--color-dark)]" onClick={!tvStarted ? startTV : undefined} style={{ cursor: !tvStarted ? 'pointer' : 'default' }}>
         {/* Full screen black background with glass effect when OFF */}
-        <div className={`absolute inset-0 ${!tvStarted ? 'glass-effect' : ''}`} />
+        <div className={`absolute inset-0 bg-[var(--color-dark)] ${!tvStarted ? 'glass-effect' : ''}`} />
 
         {/* CRT Effect - full screen when TV is started */}
         {tvStarted && (
@@ -236,8 +236,8 @@ export default function SignInPage() {
                     </button>
                     {/* Error Message */}
                     {error && (
-                      <div className="bg-red-900/30 border border-red-500/50 rounded p-2 mt-2">
-                        <p className="text-red-200 text-xs font-light">{error}</p>
+                      <div className="bg-red-900/30 border border-red-500/50 rounded p-2">
+                        <p className="text-red-200 text-xs font-light !mb-0">{error}</p>
                       </div>
                     )}
 
@@ -319,6 +319,7 @@ export default function SignInPage() {
               src="/images/vintage-tv.png"
               alt="Vintage TV"
               fill
+              sizes="(max-width: 599px) 0vw, 100vw"
               className="object-contain"
               priority
               loading="eager"
@@ -396,7 +397,7 @@ export default function SignInPage() {
                                         {/* Error Message */}
                   {error && (
                     <div className="bg-red-900/30 border border-red-500/50 rounded p-2 mb-2 mt-2">
-                      <p className="text-red-200 text-xs font-light">{error}</p>
+                      <p className="text-red-200 text-xs font-light !mb-0">{error}</p>
                     </div>
                   )}
 
