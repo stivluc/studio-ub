@@ -17,32 +17,49 @@ export default function SignInPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [tvStarted, setTvStarted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
   const supabase = createClient();
+
+  // Detect if mobile/touch device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    checkMobile();
+  }, []);
+
+  // Function to start TV
+  const startTV = () => {
+    if (tvStarted) return;
+
+    setTvStarted(true);
+
+    // Play sounds manually
+    const turnOnAudio = document.getElementById('tv-turn-on-sound') as HTMLAudioElement;
+    const noiseAudio = document.getElementById('tv-noise-sound') as HTMLAudioElement;
+
+    if (turnOnAudio) {
+      turnOnAudio.play().catch(err => console.log('Sound failed:', err));
+    }
+    if (noiseAudio) {
+      setTimeout(() => {
+        noiseAudio.play().catch(err => console.log('Noise failed:', err));
+      }, 200);
+    }
+
+    // Focus on email input after animations (2400ms for all form animations to complete)
+    setTimeout(() => {
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      emailInput?.focus();
+    }, 2600);
+  };
 
   // Handle Enter key to start TV
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'Enter' && !tvStarted) {
-        setTvStarted(true);
-        // Play sounds manually
-        const turnOnAudio = document.getElementById('tv-turn-on-sound') as HTMLAudioElement;
-        const noiseAudio = document.getElementById('tv-noise-sound') as HTMLAudioElement;
-
-        if (turnOnAudio) {
-          turnOnAudio.play().catch(err => console.log('Sound failed:', err));
-        }
-        if (noiseAudio) {
-          setTimeout(() => {
-            noiseAudio.play().catch(err => console.log('Noise failed:', err));
-          }, 200);
-        }
-
-        // Focus on email input after animations (2400ms for all form animations to complete)
-        setTimeout(() => {
-          const emailInput = document.getElementById('email') as HTMLInputElement;
-          emailInput?.focus();
-        }, 2600);
+        startTV();
       }
     };
 
@@ -99,13 +116,14 @@ export default function SignInPage() {
 
       <div className="w-full max-w-5xl">
         {/* TV Container */}
-        <div className="relative">
+        <div className="relative" onClick={!tvStarted ? startTV : undefined} style={{ cursor: !tvStarted ? 'pointer' : 'default' }}>
           {/* Dark background positioned inside the TV screen - BEHIND the TV */}
           <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 z-0">
             {/* Black screen - glass effect when OFF, grain + CRT when ON */}
             <div
               className={`w-[75%] h-[55%] rounded-sm animate-zoom-in ${!tvStarted ? 'glass-effect' : 'bg-[var(--color-dark)]'}`}
             />
+
 
             {/* CRT Effect - only appears after TV is started */}
             {tvStarted && (
@@ -132,9 +150,9 @@ export default function SignInPage() {
               </div>
             )}
 
-            {/* "Press ENTER" message - only before TV starts */}
+            {/* "Press ENTER/TAP" message - only before TV starts */}
             {!tvStarted && (
-              <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 z-10 animate-fade-in animation-delay-1000">
+              <div className="absolute inset-0 flex items-center justify-start pl-[20%] pr-[38%] -mt-6 animate-fade-in animation-delay-1000 pointer-events-none" style={{ zIndex: 25 }}>
                 <div className="w-full h-[55%] flex items-center justify-center px-2 sm:px-4">
                   <p
                     className="text-[var(--color-cream)] font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-wider whitespace-nowrap"
@@ -144,7 +162,7 @@ export default function SignInPage() {
                     }}
                   >
                     <TypewriterText
-                      text="> PRESS ENTER TO START TV"
+                      text={isMobile ? "> TAP TO START TV" : "> PRESS ENTER TO START TV"}
                       delay={1000}
                       showLoadingDots={true}
                     />
