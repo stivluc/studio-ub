@@ -127,7 +127,7 @@ export default function SignInPage() {
 
             {/* CRT Effect - only appears after TV is started */}
             {tvStarted && (
-              <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 animate-fade-in">
+              <div className="absolute inset-0 flex items-center justify-start pl-[6%] -mt-6 max-[900px]:mt-0 animate-fade-in">
                 <CRTEffect
                   effects={{
                     scanlines: true,
