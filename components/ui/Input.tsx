@@ -3,7 +3,7 @@ import { InputHTMLAttributes, TextareaHTMLAttributes, forwardRef } from 'react';
 type InputSize = 'sm' | 'md' | 'lg';
 
 const inputSizeStyles: Record<InputSize, string> = {
-  sm: 'px-3 py-2 text-sm',
+  sm: 'px-3 py-2 text-base', // min 16px to prevent iOS zoom
   md: 'px-4 py-3 text-base',
   lg: 'px-5 py-4 text-lg',
 };

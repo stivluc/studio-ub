@@ -48,9 +48,8 @@ export default function AdminNavbar({ user }: AdminNavbarProps) {
     }
   };
 
-  const navClasses = `sticky top-0 z-40 border-b border-[var(--color-cream)]/10 backdrop-blur-md transition-all duration-300 ${
-    scrolled ? 'bg-[var(--color-dark)]/75 shadow-lg' : 'bg-[var(--color-dark)]/95 shadow-md'
-  }`;
+  const navBg = scrolled ? 'bg-[var(--color-dark)]/75' : 'bg-[var(--color-dark)]/95';
+  const navShadow = scrolled ? 'shadow-lg' : 'shadow-md';
 
   const NavLink = ({ href, label, className = '' }: { href: string; label: string; className?: string }) => (
     <Link
@@ -79,7 +78,22 @@ export default function AdminNavbar({ user }: AdminNavbarProps) {
   );
 
   return (
-    <nav className={navClasses} style={{ paddingTop: 'env(safe-area-inset-top)' }}>
+    <div className="h-0">
+      {/* Safe area top fill - extends navbar background into notch area */}
+      <div
+        className={`fixed top-0 left-0 right-0 transition-colors duration-300 ${navBg}`}
+        style={{
+          height: 'env(safe-area-inset-top, 0px)',
+          zIndex: 50,
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)'
+        }}
+      />
+
+      <nav
+        className={`fixed top-0 left-0 right-0 z-40 border-b border-[var(--color-cream)]/10 backdrop-blur-md transition-all duration-300 ${navBg} ${navShadow}`}
+        style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
+      >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24 gap-4">
           <div className="flex items-center gap-4 sm:gap-8">
@@ -161,5 +175,6 @@ export default function AdminNavbar({ user }: AdminNavbarProps) {
         )}
       </div>
     </nav>
+    </div>
   );
 }

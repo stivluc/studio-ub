@@ -23,6 +23,9 @@ export default async function AdminLayout({
       <AdminMusicPlayer />
       <AdminNavbar user={user} />
 
+      {/* Spacer for fixed navbar */}
+      <div className="h-20 sm:h-24" style={{ height: 'calc(env(safe-area-inset-top, 0px) + 5rem)' }} />
+
       {/* Main Content */}
       <main className="relative z-0">{children}</main>
     </div>
