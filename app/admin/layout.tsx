@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import "../globals.css";
 
 export const metadata: Metadata = {
   title: "Admin - Studio UB",

@@ -1,17 +1,33 @@
-import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import "../globals.css";
-
-export const metadata: Metadata = {
-  title: "Studio UB",
-  description: "Studio de création graphique et audiovisuelle",
-};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  const titles: Record<string, string> = {
+    fr: "Studio UB",
+    en: "Studio UB",
+  };
+
+  const descriptions: Record<string, string> = {
+    fr: "Studio de création graphique et audiovisuelle",
+    en: "Graphic and audiovisual design studio",
+  };
+
+  return {
+    title: titles[locale] || titles.fr,
+    description: descriptions[locale] || descriptions.fr,
+  };
 }
 
 export default async function LocaleLayout({
@@ -25,7 +41,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as 'en' | 'fr')) {
     notFound();
   }
 
