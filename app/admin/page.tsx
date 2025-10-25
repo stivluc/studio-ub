@@ -12,6 +12,22 @@ export default async function AdminPage() {
     redirect("/auth/sign-in");
   }
 
+  // Récupérer les statistiques
+  const { count: projectsCount } = await supabase
+    .from("projects")
+    .select("*", { count: "exact", head: true });
+
+  const { count: imagesCount } = await supabase
+    .from("project_images")
+    .select("*", { count: "exact", head: true });
+
+  const { data: lastUpdatedProject } = await supabase
+    .from("projects")
+    .select("updated_at")
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .single();
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-8">
@@ -95,20 +111,32 @@ export default async function AdminPage() {
           <p className="text-[var(--color-cream)]/70 font-light text-sm mb-1">
             Projets
           </p>
-          <p className="text-3xl font-bold text-[var(--color-cream)]">0</p>
+          <p className="text-3xl font-bold text-[var(--color-cream)]">
+            {projectsCount || 0}
+          </p>
         </div>
         <div className="bg-[var(--color-pine)] p-6 rounded-lg border border-[var(--color-cream)]/20">
           <p className="text-[var(--color-cream)]/70 font-light text-sm mb-1">
             Images
           </p>
-          <p className="text-3xl font-bold text-[var(--color-cream)]">0</p>
+          <p className="text-3xl font-bold text-[var(--color-cream)]">
+            {imagesCount || 0}
+          </p>
         </div>
         <div className="bg-[var(--color-pine)] p-6 rounded-lg border border-[var(--color-cream)]/20">
           <p className="text-[var(--color-cream)]/70 font-light text-sm mb-1">
             Dernière mise à jour
           </p>
-          <p className="text-lg font-medium text-[var(--color-cream)]">
-            Aujourd&apos;hui
+          <p className="text-3xl font-bold text-[var(--color-cream)]">
+            {lastUpdatedProject?.updated_at
+              ? new Date(lastUpdatedProject.updated_at).toLocaleDateString(
+                  "fr-FR",
+                  {
+                    day: "numeric",
+                    month: "short",
+                  }
+                )
+              : "Aucune"}
           </p>
         </div>
       </div>
