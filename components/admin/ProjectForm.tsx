@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import Image from 'next/image';
+import { Input, Textarea } from '@/components/ui/Input';
+import { Button } from '@/components/ui/Button';
 
 type Project = {
   id?: string;
@@ -218,131 +220,93 @@ export default function ProjectForm({ project }: ProjectFormProps) {
         </div>
       )}
 
-      {/* Titre FR */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Titre (FR) *
-        </label>
-        <input
-          type="text"
-          required
-          value={formData.title_fr}
-          onChange={(e) => setFormData({ ...formData, title_fr: e.target.value })}
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-      </div>
+      <Input
+        label="Titre (FR) *"
+        required
+        value={formData.title_fr}
+        onChange={(e) => setFormData({ ...formData, title_fr: e.target.value })}
+        size="lg"
+        className="bg-[var(--color-pine)]/50 placeholder:text-[var(--color-cream)]/30"
+      />
 
-      {/* Titre EN */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Titre (EN) *
-        </label>
-        <input
-          type="text"
-          required
-          value={formData.title_en}
-          onChange={(e) => setFormData({ ...formData, title_en: e.target.value })}
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-      </div>
+      <Input
+        label="Titre (EN) *"
+        required
+        value={formData.title_en}
+        onChange={(e) => setFormData({ ...formData, title_en: e.target.value })}
+        size="lg"
+        className="bg-[var(--color-pine)]/50 placeholder:text-[var(--color-cream)]/30"
+      />
 
-      {/* Sous-titre FR */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Sous-titre (FR)
-        </label>
-        <input
-          type="text"
-          value={formData.subtitle_fr}
-          onChange={(e) => setFormData({ ...formData, subtitle_fr: e.target.value })}
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-      </div>
+      <Input
+        label="Sous-titre (FR)"
+        value={formData.subtitle_fr}
+        onChange={(e) => setFormData({ ...formData, subtitle_fr: e.target.value })}
+        size="lg"
+        className="bg-[var(--color-pine)]/50 placeholder:text-[var(--color-cream)]/30"
+      />
 
-      {/* Sous-titre EN */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Sous-titre (EN)
-        </label>
-        <input
-          type="text"
-          value={formData.subtitle_en}
-          onChange={(e) => setFormData({ ...formData, subtitle_en: e.target.value })}
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-      </div>
+      <Input
+        label="Sous-titre (EN)"
+        value={formData.subtitle_en}
+        onChange={(e) => setFormData({ ...formData, subtitle_en: e.target.value })}
+        size="lg"
+        className="bg-[var(--color-pine)]/50 placeholder:text-[var(--color-cream)]/30"
+      />
 
-      {/* Description FR */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Description (FR)
-        </label>
-        <textarea
-          rows={6}
-          value={formData.description_fr}
-          onChange={(e) => setFormData({ ...formData, description_fr: e.target.value })}
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-      </div>
+      <Textarea
+        label="Description (FR)"
+        rows={6}
+        value={formData.description_fr}
+        onChange={(e) => setFormData({ ...formData, description_fr: e.target.value })}
+        size="lg"
+        className="bg-[var(--color-pine)]/50 placeholder:text-[var(--color-cream)]/30"
+      />
 
-      {/* Description EN */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Description (EN)
-        </label>
-        <textarea
-          rows={6}
-          value={formData.description_en}
-          onChange={(e) => setFormData({ ...formData, description_en: e.target.value })}
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-      </div>
+      <Textarea
+        label="Description (EN)"
+        rows={6}
+        value={formData.description_en}
+        onChange={(e) => setFormData({ ...formData, description_en: e.target.value })}
+        size="lg"
+        className="bg-[var(--color-pine)]/50 placeholder:text-[var(--color-cream)]/30"
+      />
 
-      {/* Date */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Date
-        </label>
-        <input
-          type="date"
-          value={formData.date}
-          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-      </div>
+      <Input
+        label="Date"
+        type="date"
+        value={formData.date}
+        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+        className="bg-[var(--color-pine)]/50"
+      />
 
-      {/* Slug */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Slug (URL) *
-        </label>
-        <input
-          type="text"
-          required
-          value={formData.slug}
-          onChange={(e) =>
-            setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/\s+/g, '-') })
-          }
-          placeholder="mon-projet"
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-        <p className="text-[var(--color-cream)]/50 text-sm mt-1">
-          Utilisé dans l'URL : /portfolio/{formData.slug || 'mon-projet'}
-        </p>
-      </div>
+      <Input
+        label="Slug (URL) *"
+        required
+        value={formData.slug}
+        onChange={(e) =>
+          setFormData({
+            ...formData,
+            slug: e.target.value
+              .toLowerCase()
+              .replace(/\s+/g, '-')
+              .replace(/[^a-z0-9-]/g, ''),
+          })
+        }
+        placeholder="mon-projet"
+        className="bg-[var(--color-pine)]/50 placeholder:text-[var(--color-cream)]/30"
+      />
+      <p className="text-[var(--color-cream)]/50 text-sm -mt-2">
+        Utilisé dans l&apos;URL : /portfolio/{formData.slug || 'mon-projet'}
+      </p>
 
-      {/* Ordre */}
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Ordre d'affichage
-        </label>
-        <input
-          type="number"
-          value={formData.order}
-          onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
-          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
-        />
-      </div>
+      <Input
+        label="Ordre d'affichage"
+        type="number"
+        value={formData.order}
+        onChange={(e) => setFormData({ ...formData, order: Number.parseInt(e.target.value, 10) || 0 })}
+        className="bg-[var(--color-pine)]/50"
+      />
 
       {/* Images */}
       <div>
@@ -362,16 +326,19 @@ export default function ProjectForm({ project }: ProjectFormProps) {
                   >
                     ×
                   </button>
-                  <input
-                    type="text"
+                  <Input
+                    label="Texte alternatif"
                     placeholder="Texte alternatif"
+                    size="sm"
                     value={img.alt_text || ''}
                     onChange={(e) => {
                       const newImages = [...images];
                       newImages[index].alt_text = e.target.value;
                       setImages(newImages);
                     }}
-                    className="w-full mt-2 bg-[var(--color-pine)]/30 border border-[var(--color-cream)]/20 rounded px-2 py-1 text-[var(--color-cream)] text-sm focus:outline-none focus:border-[var(--color-cream)]"
+                    wrapperClassName="mt-2"
+                    labelClassName="text-[var(--color-cream)]/70 text-xs font-medium"
+                    className="bg-[var(--color-pine)]/30 text-sm"
                   />
                 </div>
               ))}
@@ -397,34 +364,33 @@ export default function ProjectForm({ project }: ProjectFormProps) {
         </div>
       </div>
 
-      {/* Boutons d'action */}
-      <div className="flex items-center justify-between pt-6 border-t border-[var(--color-cream)]/20">
-        <div className="flex gap-4">
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-[var(--color-cream)] text-[var(--color-pine)] px-8 py-3 rounded-lg font-medium hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50"
-          >
+      <div className="flex items-center justify-between gap-4 pt-6 border-t border-[var(--color-cream)]/20 flex-wrap">
+        <div className="flex flex-wrap gap-4">
+          <Button type="submit" disabled={loading}>
             {loading ? 'Enregistrement...' : 'Enregistrer'}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant="ghost"
+            liftOnHover={false}
             onClick={() => router.back()}
-            className="bg-[var(--color-pine)]/30 text-[var(--color-cream)] px-8 py-3 rounded-lg font-medium hover:bg-[var(--color-pine)]/50 transition-colors"
           >
             Annuler
-          </button>
+          </Button>
         </div>
 
         {project?.id && (
-          <button
+          <Button
             type="button"
+            variant="danger"
+            size="sm"
+            liftOnHover={false}
             onClick={handleDelete}
             disabled={loading}
-            className="text-red-500 hover:text-red-400 font-medium transition-colors disabled:opacity-50"
+            className="whitespace-nowrap"
           >
             Supprimer le projet
-          </button>
+          </Button>
         )}
       </div>
     </form>

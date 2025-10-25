@@ -8,6 +8,8 @@ import { CRTEffect } from '@/lib/animations';
 import TVAudioPlayer from '@/components/TVAudioPlayer';
 import TVGlitchWrapper from '@/components/TVGlitchWrapper';
 import TypewriterText from '@/components/TypewriterText';
+import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/ui/Button';
 import { fadeOutAudio, playAudio } from '@/lib/utils/audioFade';
 import '@/lib/animations/GlassEffect.css';
 
@@ -185,63 +187,54 @@ export default function SignInPage() {
 
                 {/* Form */}
                 <form onSubmit={handleSignIn} className="space-y-2">
-                  <div className="animate-fade-in-up animation-delay-2000">
-                    <label
-                      htmlFor="email-mobile"
-                      className="block text-xs font-medium text-[var(--color-cream)] mb-1"
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="email-mobile"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      onFocus={handleInputFocus}
-                      required
-                      disabled={loading}
-                      className="w-full px-3 py-2 text-base bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
-                      placeholder="admin@studioub.ch"
-                    />
-                  </div>
+                  <Input
+                    id="email-mobile"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onFocus={handleInputFocus}
+                    required
+                    disabled={loading}
+                    placeholder="admin@studioub.ch"
+                    size="sm"
+                    wrapperClassName="animate-fade-in-up animation-delay-2000"
+                    label="Email"
+                    labelClassName="text-xs font-medium text-[var(--color-cream)] mb-1"
+                    className="bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 font-light placeholder:text-[var(--color-cream)]/40"
+                  />
 
-                  <div className="animate-fade-in-up animation-delay-2200">
-                    <label
-                      htmlFor="password-mobile"
-                      className="block text-xs font-medium text-[var(--color-cream)] mb-1"
-                    >
-                      Mot de passe
-                    </label>
-                    <input
-                      id="password-mobile"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      onFocus={handleInputFocus}
-                      required
-                      disabled={loading}
-                      className="w-full px-3 py-2 text-base bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
-                      placeholder="••••••••"
-                    />
-                  </div>
+                  <Input
+                    id="password-mobile"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    onFocus={handleInputFocus}
+                    required
+                    disabled={loading}
+                    placeholder="••••••••"
+                    size="sm"
+                    wrapperClassName="animate-fade-in-up animation-delay-2200"
+                    label="Mot de passe"
+                    labelClassName="text-xs font-medium text-[var(--color-cream)] mb-1"
+                    className="bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 font-light placeholder:text-[var(--color-cream)]/40"
+                  />
 
                   <div className="space-y-1 animate-fade-in-up animation-delay-2400">
-                    <button
+                    <Button
                       type="submit"
                       disabled={loading}
                       onClick={handleButtonClick}
-                      className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-2 px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
+                      size="sm"
+                      className="w-full"
                     >
                       {loading ? 'Connexion...' : 'Se connecter'}
-                    </button>
-                    {/* Error Message */}
+                    </Button>
                     {error && (
                       <div className="bg-red-900/30 border border-red-500/50 rounded p-2">
                         <p className="text-red-200 text-xs font-light !mb-0">{error}</p>
                       </div>
                     )}
 
-                    {/* Additional Info */}
                     <p className="text-center text-[var(--color-cream)]/80 font-light text-[10px] mt-2">
                       Accès réservé aux administrateurs
                     </p>
@@ -345,63 +338,54 @@ export default function SignInPage() {
 
                       {/* Form */}
                       <form onSubmit={handleSignIn} className="space-y-2 sm:space-y-3">
-                        <div className="animate-fade-in-up animation-delay-2000">
-                          <label
-                            htmlFor="email"
-                            className="block text-[10px] sm:text-xs font-medium text-[var(--color-cream)] mb-1"
-                          >
-                            Email
-                          </label>
-                          <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            onFocus={handleInputFocus}
-                            required
-                            disabled={loading}
-                            className="w-full px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
-                            placeholder="admin@studioub.ch"
-                          />
-                        </div>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          onFocus={handleInputFocus}
+                          required
+                          disabled={loading}
+                          placeholder="admin@studioub.ch"
+                          size="sm"
+                          wrapperClassName="animate-fade-in-up animation-delay-2000"
+                          label="Email"
+                          labelClassName="text-[10px] sm:text-xs font-medium text-[var(--color-cream)] mb-1"
+                          className="bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 font-light placeholder:text-[var(--color-cream)]/40 px-2 sm:px-3 py-1 sm:py-1.5"
+                        />
 
-                        <div className="animate-fade-in-up animation-delay-2200">
-                          <label
-                            htmlFor="password"
-                            className="block text-[10px] sm:text-xs font-medium text-[var(--color-cream)] mb-1"
-                          >
-                            Mot de passe
-                          </label>
-                          <input
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            onFocus={handleInputFocus}
-                            required
-                            disabled={loading}
-                            className="w-full px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 rounded text-[var(--color-cream)] placeholder-[var(--color-cream)]/40 focus:outline-none focus:border-[var(--color-cream)] disabled:opacity-50 font-light"
-                            placeholder="••••••••"
-                          />
-                        </div>
+                        <Input
+                          id="password"
+                          type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          onFocus={handleInputFocus}
+                          required
+                          disabled={loading}
+                          placeholder="••••••••"
+                          size="sm"
+                          wrapperClassName="animate-fade-in-up animation-delay-2200"
+                          label="Mot de passe"
+                          labelClassName="text-[10px] sm:text-xs font-medium text-[var(--color-cream)] mb-1"
+                          className="bg-[var(--color-pine)]/80 border border-[var(--color-cream)]/30 font-light placeholder:text-[var(--color-cream)]/40 px-2 sm:px-3 py-1 sm:py-1.5"
+                        />
 
                         <div className="space-y-1 animate-fade-in-up animation-delay-2400">
-                          <button
+                          <Button
                             type="submit"
                             disabled={loading}
                             onClick={handleButtonClick}
-                            className="w-full bg-[var(--color-cream)] text-[var(--color-pine)] py-1.5 sm:py-2 px-3 sm:px-4 rounded font-semibold hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm cursor-pointer"
+                            size="sm"
+                            className="w-full text-xs sm:text-sm"
                           >
                             {loading ? 'Connexion...' : 'Se connecter'}
-                          </button>
-                                        {/* Error Message */}
-                  {error && (
-                    <div className="bg-red-900/30 border border-red-500/50 rounded p-2 mb-2 mt-2">
-                      <p className="text-red-200 text-xs font-light !mb-0">{error}</p>
-                    </div>
-                  )}
+                          </Button>
+                          {error && (
+                            <div className="bg-red-900/30 border border-red-500/50 rounded p-2 mb-2 mt-2">
+                              <p className="text-red-200 text-xs font-light !mb-0">{error}</p>
+                            </div>
+                          )}
 
-                          {/* Additional Info */}
                           <p className="text-center text-[var(--color-cream)]/80 font-light text-[9px] sm:text-[10px] md:text-[11px] mt-2">
                             Accès réservé aux administrateurs
                           </p>

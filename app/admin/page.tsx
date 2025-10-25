@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { Card } from "@/components/ui/Card";
 
 export default async function AdminPage() {
   const supabase = await createClient();
@@ -42,67 +43,65 @@ export default async function AdminPage() {
       {/* Admin Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Portfolio Management */}
-        <Link
-          href="/admin/portfolio"
-          className="relative bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <div className="crt-scanlines-hover"></div>
-          <div className="relative z-10 glitch-on-hover">
-            <div className="mb-6 inline-block p-3 bg-[var(--color-cream)]/10 rounded-xl group-hover:bg-[var(--color-cream)]/20 transition-colors duration-300">
-              <svg
-                className="w-10 h-10 text-[var(--color-cream)] group-hover:scale-110 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
+        <Link href="/admin/portfolio" className="block">
+          <Card hover interactive className="p-8">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="crt-scanlines-hover"></div>
+            <div className="relative z-10 glitch-on-hover">
+              <div className="mb-6 inline-block p-3 bg-[var(--color-cream)]/10 rounded-xl group-hover:bg-[var(--color-cream)]/20 transition-colors duration-300">
+                <svg
+                  className="w-10 h-10 text-[var(--color-cream)] group-hover:scale-110 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <h2 className="text-3xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
+                Portfolio
+              </h2>
+              <p className="text-[var(--color-cream)]/60 leading-relaxed">
+                Gérer les projets et images du portfolio
+              </p>
             </div>
-            <h2 className="text-3xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
-              Portfolio
-            </h2>
-            <p className="text-[var(--color-cream)]/60 leading-relaxed">
-              Gérer les projets et images du portfolio
-            </p>
-          </div>
+          </Card>
         </Link>
 
         {/* Account */}
-        <Link
-          href="/admin/account"
-          className="relative bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <div className="crt-scanlines-hover"></div>
-          <div className="relative z-10 glitch-on-hover">
-            <div className="mb-6 inline-block p-3 bg-[var(--color-cream)]/10 rounded-xl group-hover:bg-[var(--color-cream)]/20 transition-colors duration-300">
-              <svg
-                className="w-10 h-10 text-[var(--color-cream)] group-hover:scale-110 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
+        <Link href="/admin/account" className="block">
+          <Card hover interactive className="p-8">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="crt-scanlines-hover"></div>
+            <div className="relative z-10 glitch-on-hover">
+              <div className="mb-6 inline-block p-3 bg-[var(--color-cream)]/10 rounded-xl group-hover:bg-[var(--color-cream)]/20 transition-colors duration-300">
+                <svg
+                  className="w-10 h-10 text-[var(--color-cream)] group-hover:scale-110 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </div>
+              <h2 className="text-3xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
+                Compte
+              </h2>
+              <p className="text-[var(--color-cream)]/60 leading-relaxed">
+                Gérer votre profil administrateur
+              </p>
             </div>
-            <h2 className="text-3xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
-              Compte
-            </h2>
-            <p className="text-[var(--color-cream)]/60 leading-relaxed">
-              Gérer votre profil administrateur
-            </p>
-          </div>
+          </Card>
         </Link>
 
       </div>

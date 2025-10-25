@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 
 export default async function PortfolioAdminPage() {
   const supabase = await createClient();
@@ -81,10 +82,7 @@ export default async function PortfolioAdminPage() {
           {projects.map((project) => {
             const firstImage = project.project_images?.[0];
             return (
-              <div
-                key={project.id}
-                className="group bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 rounded-2xl overflow-hidden border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5 relative"
-              >
+              <Card key={project.id} hover interactive className="overflow-hidden relative">
                 <div className="crt-scanlines-hover" style={{ zIndex: 20 }}></div>
                 <Link
                   href={`/admin/portfolio/${project.id}`}
@@ -116,7 +114,7 @@ export default async function PortfolioAdminPage() {
                           />
                         </svg>
                         <span className="text-[var(--color-cream)]/30 text-sm">
-                          Pas d'image
+                          Pas d&apos;image
                         </span>
                       </div>
                     </div>
@@ -140,7 +138,7 @@ export default async function PortfolioAdminPage() {
                     )}
                   </div>
                 </Link>
-              </div>
+              </Card>
             );
           })}
         </div>

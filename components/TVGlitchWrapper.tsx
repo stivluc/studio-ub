@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, ReactNode } from 'react';
-import '@/lib/animations/TVGlitch.css';
 
 interface TVGlitchWrapperProps {
   children: ReactNode;
@@ -34,7 +33,7 @@ export default function TVGlitchWrapper({
 
     // Add intensity class to all elements
     elements.forEach((element) => {
-      element.classList.add(`tv-glitch-${intensity}`);
+      element.classList.add(`glitch-random-${intensity}`);
     });
 
     const scheduleGlitch = (element: HTMLElement) => {
@@ -42,13 +41,13 @@ export default function TVGlitchWrapper({
         if (!element) return;
 
         // Add glitch class
-        element.classList.add('tv-glitching');
+        element.classList.add('glitch-random-active');
 
         // Remove after animation completes
         const duration = intensity === 'low' ? 150 : intensity === 'medium' ? 250 : 300;
         const removeTimeout = setTimeout(() => {
           if (element) {
-            element.classList.remove('tv-glitching');
+            element.classList.remove('glitch-random-active');
           }
         }, duration);
         timeoutsRef.current.push(removeTimeout);
@@ -76,7 +75,7 @@ export default function TVGlitchWrapper({
       // Remove classes from all elements
       elements.forEach((element) => {
         if (element) {
-          element.classList.remove('tv-glitching', `tv-glitch-${intensity}`);
+          element.classList.remove('glitch-random-active', `glitch-random-${intensity}`);
         }
       });
     };

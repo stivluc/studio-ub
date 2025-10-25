@@ -45,7 +45,7 @@ export default function RetroSoundManager({ volume = 0.32 }: RetroSoundManagerPr
         audio.pause();
         audio.currentTime = 0;
         stopTimeoutRef.current = null;
-      }, 400);
+      }, 420);
     };
 
     const playHoverSound = () => {

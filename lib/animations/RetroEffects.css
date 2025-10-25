@@ -12,41 +12,33 @@
     transform: translateX(0);
     clip-path: inset(0 0 0 0);
   }
-  10% {
-    transform: translateX(-3px);
-    clip-path: inset(20% 0 60% 0);
-  }
-  20% {
-    transform: translateX(0);
-    clip-path: inset(0 0 0 0);
-  }
-  30% {
-    transform: translateX(2px);
-    clip-path: inset(40% 0 40% 0);
-  }
-  40% {
-    transform: translateX(0);
-    clip-path: inset(0 0 0 0);
-  }
-  50% {
+  12% {
     transform: translateX(-2px);
-    clip-path: inset(60% 0 20% 0);
+    clip-path: inset(12% 0 70% 0);
+  }
+  24% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+  36% {
+    transform: translateX(1.5px);
+    clip-path: inset(32% 0 50% 0);
+  }
+  48% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
   }
   60% {
+    transform: translateX(-1px);
+    clip-path: inset(55% 0 25% 0);
+  }
+  72% {
     transform: translateX(0);
     clip-path: inset(0 0 0 0);
   }
-  70% {
+  84% {
     transform: translateX(1px);
-    clip-path: inset(10% 0 70% 0);
-  }
-  80% {
-    transform: translateX(0);
-    clip-path: inset(0 0 0 0);
-  }
-  90% {
-    transform: translateX(-2px);
-    clip-path: inset(50% 0 30% 0);
+    clip-path: inset(18% 0 68% 0);
   }
   100% {
     transform: translateX(0);
@@ -55,79 +47,143 @@
 }
 
 @keyframes glitch-shift {
-  0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% {
+  0%, 42%, 46%, 60%, 63%, 67%, 72%, 100% {
     transform: skewX(0deg);
   }
-  41% {
-    transform: skewX(5deg) translateX(-3px);
+  43% {
+    transform: skewX(3deg) translateX(-2px);
   }
-  42% {
-    transform: skewX(-5deg) translateX(3px);
+  44% {
+    transform: skewX(-3deg) translateX(2px);
   }
-  59% {
-    transform: skewX(20deg) translateX(-5px) translateY(1px);
+  61% {
+    transform: skewX(10deg) translateX(-3px) translateY(0.5px);
   }
-  60% {
-    transform: skewX(-20deg) translateX(5px) translateY(-1px);
+  62% {
+    transform: skewX(-10deg) translateX(3px) translateY(-0.5px);
   }
-  63% {
-    transform: skewX(5deg) translateX(-2px);
+  65% {
+    transform: skewX(4deg) translateX(-1.5px);
   }
   70% {
-    transform: skewX(-25deg) translateX(-10px);
+    transform: skewX(-8deg) translateX(-5px);
   }
   71% {
-    transform: skewX(5deg) translateX(10px);
+    transform: skewX(4deg) translateX(5px);
   }
 }
 
-/* Variante medium pour les petits éléments (boutons, liens) */
-@keyframes glitch-horizontal-medium {
+/* Variante douce pour les boutons et liens */
+@keyframes glitch-horizontal-soft {
   0% {
     transform: translateX(0);
     clip-path: inset(0 0 0 0);
   }
-  15% {
-    transform: translateX(-2px);
-    clip-path: inset(35% 0 55% 0);
+  20% {
+    transform: translateX(-1.5px);
+    clip-path: inset(8% 0 72% 0);
   }
-  30% {
+  40% {
     transform: translateX(0);
     clip-path: inset(0 0 0 0);
-  }
-  45% {
-    transform: translateX(2px);
-    clip-path: inset(55% 0 35% 0);
   }
   60% {
+    transform: translateX(1px);
+    clip-path: inset(28% 0 52% 0);
+  }
+  80% {
     transform: translateX(0);
     clip-path: inset(0 0 0 0);
-  }
-  75% {
-    transform: translateX(-1px);
-    clip-path: inset(25% 0 65% 0);
   }
   100% {
-    transform: translateX(0);
-    clip-path: inset(0 0 0 0);
+    transform: translateX(-0.5px);
+    clip-path: inset(14% 0 66% 0);
   }
 }
 
-@keyframes glitch-shift-medium {
-  0%, 50%, 55%, 75%, 80%, 100% {
+@keyframes glitch-shift-soft {
+  0%, 55%, 75%, 100% {
     transform: skewX(0deg);
   }
-  52% {
-    transform: skewX(8deg) translateX(-2px);
+  57% {
+    transform: skewX(4deg) translateX(-1.5px);
   }
-  53% {
-    transform: skewX(-8deg) translateX(2px);
-  }
-  77% {
-    transform: skewX(12deg) translateX(-3px);
+  58% {
+    transform: skewX(-4deg) translateX(1.5px);
   }
   78% {
-    transform: skewX(-12deg) translateX(3px);
+    transform: skewX(6deg) translateX(-2px);
+  }
+  79% {
+    transform: skewX(-6deg) translateX(2px);
+  }
+}
+
+/* Random glitch effects (TV wrapper) */
+@keyframes glitch-random-shift {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-random-opacity {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes glitch-random-skew {
+  0%, 100% {
+    transform: skewX(0deg);
+  }
+  30% {
+    transform: skewX(1deg);
+  }
+  70% {
+    transform: skewX(-1deg);
+  }
+}
+
+@keyframes glitch-random-text-shadow {
+  0%, 100% {
+    text-shadow: none;
+  }
+  33% {
+    text-shadow:
+      -1px 0 rgba(255, 0, 0, 0.5),
+      1px 0 rgba(0, 255, 255, 0.5);
+  }
+  66% {
+    text-shadow:
+      1px 0 rgba(255, 0, 0, 0.5),
+      -1px 0 rgba(0, 255, 255, 0.5);
+  }
+}
+
+@keyframes glitch-random-filter {
+  0%, 100% {
+    filter: none;
+  }
+  50% {
+    filter: contrast(1.1) brightness(0.95);
   }
 }
 
@@ -156,10 +212,9 @@
 }
 
 .group:hover .glitch-on-hover {
-  animation: glitch-horizontal 0.5s infinite, glitch-shift 2s infinite;
+  animation: glitch-horizontal 0.65s infinite, glitch-shift 2.4s infinite;
 }
 
-/* Variante pour boutons et petits éléments */
 .glitch-on-hover-subtle {
   position: relative;
   display: inline-block;
@@ -168,5 +223,35 @@
 button:hover .glitch-on-hover-subtle,
 a:hover > .glitch-on-hover-subtle,
 .group:hover > .glitch-on-hover-subtle {
-  animation: glitch-horizontal-medium 0.4s infinite, glitch-shift-medium 1.5s infinite;
+  animation: glitch-horizontal-soft 0.55s infinite, glitch-shift-soft 2s infinite;
+}
+
+.glitch-random-active {
+  animation: glitch-random-text-shadow 0.2s ease-in-out;
+}
+
+.glitch-random-low.glitch-random-active {
+  animation:
+    glitch-random-shift 0.15s ease-in-out,
+    glitch-random-opacity 0.15s ease-in-out,
+    glitch-random-filter 0.15s ease-in-out,
+    glitch-random-text-shadow 0.2s ease-in-out;
+}
+
+.glitch-random-medium.glitch-random-active {
+  animation:
+    glitch-random-shift 0.25s ease-in-out,
+    glitch-random-opacity 0.25s ease-in-out,
+    glitch-random-skew 0.25s ease-in-out,
+    glitch-random-filter 0.25s ease-in-out,
+    glitch-random-text-shadow 0.2s ease-in-out;
+}
+
+.glitch-random-high.glitch-random-active {
+  animation:
+    glitch-random-shift 0.3s ease-in-out,
+    glitch-random-skew 0.3s ease-in-out,
+    glitch-random-opacity 0.3s ease-in-out,
+    glitch-random-filter 0.3s ease-in-out,
+    glitch-random-text-shadow 0.2s ease-in-out;
 }

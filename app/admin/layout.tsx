@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import AdminMusicPlayer from "@/components/admin/AdminMusicPlayer";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Admin - Studio UB",
@@ -68,12 +69,14 @@ export default async function AdminLayout({
                     <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                   <form action="/api/auth/sign-out" method="post">
-                    <button
+                    <Button
                       type="submit"
-                      className="glitch-on-hover px-5 py-2.5 bg-[var(--color-brown)] hover:bg-[var(--color-brown)]/80 text-[var(--color-cream)] font-semibold text-base rounded-xl transition-all duration-200 cursor-pointer"
+                      variant="secondary"
+                      size="sm"
+                      className="px-5 py-2.5"
                     >
-                      <span className="glitch-on-hover-subtle">Déconnexion</span>
-                    </button>
+                      Déconnexion
+                    </Button>
                   </form>
                 </>
               ) : (

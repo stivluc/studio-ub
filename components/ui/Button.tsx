@@ -1,13 +1,14 @@
 import { ReactNode, ButtonHTMLAttributes } from 'react';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
+  liftOnHover?: boolean;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -22,6 +23,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
+  xs: 'px-3 py-1.5 text-xs',
   sm: 'px-4 py-2 text-sm',
   md: 'px-6 py-3 text-base',
   lg: 'px-8 py-4 text-lg',
@@ -32,6 +34,7 @@ export function Button({
   variant = 'primary',
   size = 'md',
   className = '',
+  liftOnHover = true,
   disabled,
   ...props
 }: ButtonProps) {
@@ -43,7 +46,7 @@ export function Button({
         ${sizeStyles[size]}
         rounded-xl font-semibold
         transition-all duration-200
-        hover:-translate-y-0.5
+        ${liftOnHover ? 'hover:-translate-y-0.5' : ''}
         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0
         ${className}
       `}

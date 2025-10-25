@@ -4,16 +4,18 @@ type CardProps = {
   children: ReactNode;
   className?: string;
   hover?: boolean;
+  interactive?: boolean;
 };
 
-export function Card({ children, className = '', hover = false }: CardProps) {
+export function Card({ children, className = '', hover = false, interactive = false }: CardProps) {
   return (
     <div
       className={`
         bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80
         rounded-2xl border border-[var(--color-cream)]/10
         shadow-lg backdrop-blur-sm
-        ${hover ? 'hover:border-[var(--color-cream)]/30 hover:shadow-2xl hover:shadow-[var(--color-cream)]/5 transition-all duration-300' : ''}
+        ${interactive ? 'relative overflow-hidden group transition-all duration-300' : ''}
+        ${hover ? 'hover:border-[var(--color-cream)]/30 hover:shadow-2xl hover:shadow-[var(--color-cream)]/5' : ''}
         ${className}
       `}
     >

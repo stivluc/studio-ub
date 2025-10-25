@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/ui/Button';
 
 export default function PasswordChangeForm() {
   const [loading, setLoading] = useState(false);
@@ -67,45 +69,29 @@ export default function PasswordChangeForm() {
         </div>
       )}
 
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Nouveau mot de passe
-        </label>
-        <input
-          type="password"
-          required
-          minLength={6}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full bg-[var(--color-pine)]/30 border border-[var(--color-cream)]/20 rounded-lg px-4 py-3 text-[var(--color-cream)] focus:outline-none focus:border-[var(--color-cream)]"
-          placeholder="Minimum 6 caractères"
-        />
-      </div>
+      <Input
+        type="password"
+        required
+        minLength={6}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Minimum 6 caractères"
+        label="Nouveau mot de passe"
+      />
 
-      <div>
-        <label className="block text-[var(--color-cream)] font-medium mb-2">
-          Confirmer le mot de passe
-        </label>
-        <input
-          type="password"
-          required
-          minLength={6}
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          className="w-full bg-[var(--color-pine)]/30 border border-[var(--color-cream)]/20 rounded-lg px-4 py-3 text-[var(--color-cream)] focus:outline-none focus:border-[var(--color-cream)]"
-          placeholder="Confirmez le nouveau mot de passe"
-        />
-      </div>
+      <Input
+        type="password"
+        required
+        minLength={6}
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        placeholder="Confirmez le nouveau mot de passe"
+        label="Confirmer le mot de passe"
+      />
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-[var(--color-cream)] text-[var(--color-pine)] px-6 py-3 rounded-lg font-medium hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50"
-      >
-        <span className="glitch-on-hover-subtle">
-          {loading ? 'Mise à jour...' : 'Mettre à jour le mot de passe'}
-        </span>
-      </button>
+      <Button type="submit" disabled={loading}>
+        {loading ? 'Mise à jour...' : 'Mettre à jour le mot de passe'}
+      </Button>
     </form>
   );
 }
