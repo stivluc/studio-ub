@@ -18,6 +18,8 @@ export default async function AdminLayout({
     data: { user },
   } = await supabase.auth.getUser();
 
+  const firstName = user?.user_metadata?.first_name || 'Admin';
+
   return (
     <div className="min-h-screen bg-[var(--color-dark)] grain-texture">
       {/* Admin Navigation */}
@@ -40,7 +42,7 @@ export default async function AdminLayout({
                     href="/admin"
                     className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
                   >
-                    Dash
+                    Dashboard
                     <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                   <Link
@@ -51,27 +53,40 @@ export default async function AdminLayout({
                     <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                   <Link
-                    href="/admin/settings"
+                    href="/admin/accounts"
                     className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
                   >
-                    Paramètres
+                    Comptes
                     <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                 </div>
               )}
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               {user ? (
                 <>
-                  <span className="hidden sm:inline text-[var(--color-cream)]/70 font-medium text-base">
-                    {user.email}
+                  <span className="hidden sm:inline text-[var(--color-cream)] font-semibold text-base">
+                    {firstName}
                   </span>
                   <form action="/api/auth/sign-out" method="post">
                     <button
                       type="submit"
-                      className="px-5 py-2.5 bg-[var(--color-cream)]/10 hover:bg-[var(--color-cream)]/20 text-[var(--color-cream)] font-semibold text-base rounded-xl border border-[var(--color-cream)]/20 hover:border-[var(--color-cream)]/40 transition-all duration-200"
+                      className="group flex items-center gap-2 px-5 py-2.5 bg-[var(--color-cream)]/10 hover:bg-[var(--color-cream)]/20 text-[var(--color-cream)] font-semibold text-base rounded-xl border border-[var(--color-cream)]/20 hover:border-[var(--color-cream)]/40 transition-all duration-200"
                     >
                       Déconnexion
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        />
+                      </svg>
                     </button>
                   </form>
                 </>
