@@ -49,7 +49,7 @@ export function Button({
       disabled={disabled}
       {...props}
     >
-      {children}
+      <span className="glitch-on-hover-subtle">{children}</span>
     </button>
   );
 }
