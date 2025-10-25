@@ -42,14 +42,14 @@ export default async function AdminLayout({
                 <div className="hidden md:flex items-center gap-8">
                   <Link
                     href="/admin"
-                    className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
+                    className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group glitch-on-hover"
                   >
                     <span className="glitch-on-hover-subtle">Dashboard</span>
                     <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                   <Link
                     href="/admin/portfolio"
-                    className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
+                    className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group glitch-on-hover"
                   >
                     <span className="glitch-on-hover-subtle">Portfolio</span>
                     <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
@@ -62,7 +62,7 @@ export default async function AdminLayout({
                 <>
                   <Link
                     href="/admin/account"
-                    className="hidden sm:inline relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
+                    className="hidden sm:inline relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group glitch-on-hover"
                   >
                     <span className="glitch-on-hover-subtle">{firstName}</span>
                     <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
@@ -70,7 +70,7 @@ export default async function AdminLayout({
                   <form action="/api/auth/sign-out" method="post">
                     <button
                       type="submit"
-                      className="px-5 py-2.5 bg-[var(--color-brown)] hover:bg-[var(--color-brown)]/80 text-[var(--color-cream)] font-semibold text-base rounded-xl transition-all duration-200 cursor-pointer"
+                      className="glitch-on-hover px-5 py-2.5 bg-[var(--color-brown)] hover:bg-[var(--color-brown)]/80 text-[var(--color-cream)] font-semibold text-base rounded-xl transition-all duration-200 cursor-pointer"
                     >
                       <span className="glitch-on-hover-subtle">Déconnexion</span>
                     </button>

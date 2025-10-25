@@ -151,7 +151,7 @@ export default async function AdminPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="text-[var(--color-cream)]/50 text-sm font-semibold uppercase tracking-wider">
-              Version Next.js
+              Version Node.js
             </label>
             <p className="text-[var(--color-cream)] font-semibold text-lg mt-1">
               {process.version}

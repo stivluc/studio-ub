@@ -38,6 +38,7 @@ export function Button({
   return (
     <button
       className={`
+        glitch-on-hover
         ${variantStyles[variant]}
         ${sizeStyles[size]}
         rounded-xl font-semibold
