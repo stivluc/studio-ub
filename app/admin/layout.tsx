@@ -21,32 +21,34 @@ export default async function AdminLayout({
   return (
     <div className="min-h-screen bg-[var(--color-dark)] grain-texture">
       {/* Admin Navigation */}
-      <nav className="bg-[var(--color-pine)] border-b border-[var(--color-cream)]/20 relative z-10">
+      <nav className="bg-[var(--color-pine)]/95 backdrop-blur-sm border-b border-[var(--color-cream)]/10 relative z-10 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-24">
             <div className="flex items-center gap-8">
-              <Link href="/admin" className="flex items-center">
+              <Link href="/admin" className="flex items-center group">
                 <Image
                   src="/images/logos/logo-beige.png"
                   alt="Studio UB"
-                  width={50}
-                  height={50}
-                  className="hover:opacity-80 transition-opacity"
+                  width={55}
+                  height={55}
+                  className="group-hover:scale-110 transition-transform duration-300"
                 />
               </Link>
               {user && (
-                <div className="hidden md:flex items-center gap-6">
+                <div className="hidden md:flex items-center gap-8">
                   <Link
                     href="/admin/portfolio"
-                    className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-semibold text-lg transition-colors"
+                    className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
                   >
                     Portfolio
+                    <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                   <Link
                     href="/admin/settings"
-                    className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-semibold text-lg transition-colors"
+                    className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
                   >
                     Paramètres
+                    <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                 </div>
               )}
@@ -54,13 +56,13 @@ export default async function AdminLayout({
             <div className="flex items-center gap-6">
               {user ? (
                 <>
-                  <span className="hidden sm:inline text-[var(--color-cream)]/80 font-medium text-base">
+                  <span className="hidden sm:inline text-[var(--color-cream)]/70 font-medium text-base">
                     {user.email}
                   </span>
                   <form action="/api/auth/sign-out" method="post">
                     <button
                       type="submit"
-                      className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-semibold text-base transition-colors"
+                      className="px-5 py-2.5 bg-[var(--color-cream)]/10 hover:bg-[var(--color-cream)]/20 text-[var(--color-cream)] font-semibold text-base rounded-xl border border-[var(--color-cream)]/20 hover:border-[var(--color-cream)]/40 transition-all duration-200"
                     >
                       Déconnexion
                     </button>
@@ -69,7 +71,7 @@ export default async function AdminLayout({
               ) : (
                 <Link
                   href="/auth/sign-in"
-                  className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-semibold text-base transition-colors"
+                  className="px-5 py-2.5 bg-[var(--color-cream)]/10 hover:bg-[var(--color-cream)]/20 text-[var(--color-cream)] font-semibold text-base rounded-xl border border-[var(--color-cream)]/20 hover:border-[var(--color-cream)]/40 transition-all duration-200"
                 >
                   Connexion
                 </Link>
