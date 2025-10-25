@@ -130,14 +130,16 @@ export default async function AdminPage() {
           </p>
           <p className="text-4xl font-bold text-[var(--color-cream)] tracking-tight">
             {lastUpdatedProject?.updated_at
-              ? new Date(lastUpdatedProject.updated_at).toLocaleDateString(
-                  "fr-FR",
-                  {
-                    day: "numeric",
-                    month: "short",
-                  }
-                )
-              : "Aucune"}
+              ? (() => {
+                  const date = new Date(lastUpdatedProject.updated_at);
+                  const formattedDate = date.toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'short',
+                  });
+                  const year = String(date.getFullYear()).slice(-2);
+                  return `${formattedDate} ${year}`;
+                })()
+              : 'Aucune'}
           </p>
         </div>
       </div>
