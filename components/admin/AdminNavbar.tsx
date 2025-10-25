@@ -43,10 +43,10 @@ export default function AdminNavbar({ user, firstName }: AdminNavbarProps) {
 
     const audio = document.getElementById('music-audio') as HTMLAudioElement | null;
     if (audio && !audio.paused) {
-      fadeOutAudio(audio, 700);
+      fadeOutAudio(audio, 1100);
       window.setTimeout(() => {
         signOutFormRef.current?.submit();
-      }, 720);
+      }, 1150);
     } else {
       signOutFormRef.current?.submit();
     }

@@ -90,11 +90,11 @@ export default function AdminMusicPlayer({ volume = 0.1 }: AdminMusicPlayerProps
         return Promise.resolve();
       }
       return new Promise<void>((resolve) => {
-        fadeOutAudio(audio, 600);
+        fadeOutAudio(audio, 1100);
         const timeout = window.setTimeout(() => {
           audio.pause();
           resolve();
-        }, 650);
+        }, 1150);
         cleanupTimeouts.push(timeout);
       });
     };
@@ -116,7 +116,7 @@ export default function AdminMusicPlayer({ volume = 0.1 }: AdminMusicPlayerProps
           .play()
           .then(() => {
             if (!cancelled) {
-              fadeInAudio(audio, targetVolume, 1800);
+              fadeInAudio(audio, targetVolume, 4000);
             }
           })
           .catch((err) => {

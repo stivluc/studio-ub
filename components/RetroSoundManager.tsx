@@ -11,31 +11,31 @@ interface RetroSoundManagerProps {
 
 export default function RetroSoundManager({ volume = 0.32 }: RetroSoundManagerProps) {
   const stopTimeoutRef = useRef<number | null>(null);
+  const fallbackClickAudioRef = useRef<HTMLAudioElement | null>(null);
+
   const audioElement = useMemo(
     () => (
-      <>
-        <audio
-          id="retro-hover-sound"
-          src="/sounds/tv-noise-2.mp3"
-          preload="auto"
-        />
-        <audio id="global-button-sound" src="/sounds/button.mp3" preload="auto" />
-      </>
+      <audio
+        id="retro-hover-sound"
+        src="/sounds/tv-noise-2.mp3"
+        preload="auto"
+      />
     ),
     []
   );
 
   useEffect(() => {
-    const audio = document.getElementById('retro-hover-sound') as HTMLAudioElement | null;
-    if (!audio) {
+    const hoverAudio = document.getElementById('retro-hover-sound') as HTMLAudioElement | null;
+    if (!hoverAudio) {
       return;
     }
 
-    audio.volume = volume;
-    audio.loop = false;
+    hoverAudio.volume = volume;
+    hoverAudio.loop = false;
 
     let lastElement: Element | null = null;
     let lastPlayedAt = 0;
+
     const clearStopTimeout = () => {
       if (stopTimeoutRef.current !== null) {
         window.clearTimeout(stopTimeoutRef.current);
@@ -46,18 +46,35 @@ export default function RetroSoundManager({ volume = 0.32 }: RetroSoundManagerPr
     const scheduleStop = () => {
       clearStopTimeout();
       stopTimeoutRef.current = window.setTimeout(() => {
-        audio.pause();
-        audio.currentTime = 0;
+        hoverAudio.pause();
+        hoverAudio.currentTime = 0;
         stopTimeoutRef.current = null;
       }, 420);
     };
 
     const playHoverSound = () => {
-      audio.currentTime = 0;
-      audio.play().catch((err) => {
+      hoverAudio.currentTime = 0;
+      hoverAudio.play().catch((err) => {
         console.log('Retro hover sound playback blocked:', err);
       });
       scheduleStop();
+    };
+
+    const ensureClickAudio = () => {
+      const existing = document.getElementById('button-sound') as HTMLAudioElement | null;
+      if (existing) {
+        existing.volume = Math.min(existing.volume || 0.4, 0.4);
+        return existing;
+      }
+
+      if (!fallbackClickAudioRef.current) {
+        const audio = new Audio('/sounds/button.mp3');
+        audio.preload = 'auto';
+        audio.volume = 0.4;
+        fallbackClickAudioRef.current = audio;
+      }
+
+      return fallbackClickAudioRef.current;
     };
 
     const handlePointerOver = (event: PointerEvent) => {
@@ -97,24 +114,10 @@ export default function RetroSoundManager({ volume = 0.32 }: RetroSoundManagerPr
         if (lastElement === interactive) {
           lastElement = null;
         }
-        audio.pause();
-        audio.currentTime = 0;
+        hoverAudio.pause();
+        hoverAudio.currentTime = 0;
         clearStopTimeout();
       }
-    };
-
-    const playClickSound = () => {
-      const primary = document.getElementById('button-sound') as HTMLAudioElement | null;
-      const fallback = document.getElementById('global-button-sound') as HTMLAudioElement | null;
-      const audioTarget = primary ?? fallback;
-      if (!audioTarget) {
-        return;
-      }
-      audioTarget.volume = 0.4;
-      audioTarget.currentTime = 0;
-      audioTarget.play().catch((err) => {
-        console.log('Click sound playback blocked:', err);
-      });
     };
 
     const handlePointerDown = (event: PointerEvent) => {
@@ -132,16 +135,24 @@ export default function RetroSoundManager({ volume = 0.32 }: RetroSoundManagerPr
         return;
       }
 
-      playClickSound();
+      const clickAudio = ensureClickAudio();
+      if (!clickAudio) {
+        return;
+      }
+
+      try {
+        clickAudio.currentTime = 0;
+        clickAudio.play().catch((err) => {
+          console.log('Click sound playback blocked:', err);
+        });
+      } catch (err) {
+        console.log('Click sound playback failed:', err);
+      }
     };
 
     const primaryButtonAudio = document.getElementById('button-sound') as HTMLAudioElement | null;
-    const fallbackButtonAudio = document.getElementById('global-button-sound') as HTMLAudioElement | null;
-    if (fallbackButtonAudio) {
-      fallbackButtonAudio.volume = 0.4;
-    }
     if (primaryButtonAudio) {
-      primaryButtonAudio.volume = 0.4;
+      primaryButtonAudio.volume = Math.min(primaryButtonAudio.volume || 0.4, 0.4);
     }
 
     document.addEventListener('pointerover', handlePointerOver);
@@ -153,8 +164,11 @@ export default function RetroSoundManager({ volume = 0.32 }: RetroSoundManagerPr
       document.removeEventListener('pointerleave', handlePointerLeave, true);
       document.removeEventListener('pointerdown', handlePointerDown, true);
       clearStopTimeout();
-      audio.pause();
-      audio.currentTime = 0;
+      hoverAudio.pause();
+      hoverAudio.currentTime = 0;
+      if (fallbackClickAudioRef.current) {
+        fallbackClickAudioRef.current.pause();
+      }
     };
   }, [volume]);
 
