@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { fadeInAudio, fadeOutAudio } from '@/lib/utils/audioFade';
 
 interface AdminMusicPlayerProps {
   volume?: number;
@@ -71,15 +72,6 @@ export default function AdminMusicPlayer({ volume = 0.1 }: AdminMusicPlayerProps
   }, []);
 
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) {
-      return;
-    }
-
-    audio.volume = volume;
-  }, [volume]);
-
-  useEffect(() => {
     if (!tracks.length || currentIndex === null) {
       return;
     }
@@ -90,33 +82,65 @@ export default function AdminMusicPlayer({ volume = 0.1 }: AdminMusicPlayerProps
     }
 
     const track = tracks[currentIndex];
-    audio.src = track;
-    audio.loop = false;
-    audio.volume = volume;
-    audio.currentTime = 0;
+    const cleanupTimeouts: number[] = [];
 
-    let interactionHandler: (() => void) | null = null;
-
-    const ensurePlayback = () => {
-      audio.play().catch((err) => {
-        console.log('Admin music autoplay blocked:', err);
-        if (interactionHandler) {
-          return;
-        }
-
-        interactionHandler = () => {
-          audio.play().catch((playErr) => {
-            console.log('Admin music playback failed after interaction:', playErr);
-          });
-        };
-
-        interactionEvents.forEach((eventName) => {
-          document.addEventListener(eventName, interactionHandler as EventListener, { once: true });
-        });
+    const targetVolume = volume;
+    const fadeOutAndPause = () => {
+      if (!audio || audio.paused || audio.currentTime === 0) {
+        return Promise.resolve();
+      }
+      return new Promise<void>((resolve) => {
+        fadeOutAudio(audio, 600);
+        const timeout = window.setTimeout(() => {
+          audio.pause();
+          resolve();
+        }, 650);
+        cleanupTimeouts.push(timeout);
       });
     };
 
-    ensurePlayback();
+    let cancelled = false;
+
+    const startPlayback = async () => {
+      await fadeOutAndPause();
+      if (cancelled) return;
+
+      audio.src = track;
+      audio.loop = false;
+      audio.currentTime = 0;
+
+      const attemptPlay = () => {
+        if (cancelled) return;
+        audio.volume = 0;
+        audio
+          .play()
+          .then(() => {
+            if (!cancelled) {
+              fadeInAudio(audio, targetVolume, 1800);
+            }
+          })
+          .catch((err) => {
+            console.log('Admin music autoplay blocked:', err);
+            if (interactionHandler) {
+              return;
+            }
+
+            interactionHandler = () => {
+              attemptPlay();
+            };
+
+            interactionEvents.forEach((eventName) => {
+              document.addEventListener(eventName, interactionHandler as EventListener, { once: true });
+            });
+          });
+      };
+
+      attemptPlay();
+    };
+
+    let interactionHandler: (() => void) | null = null;
+
+    startPlayback();
 
     const trackCount = tracks.length;
     const handleEnded = () => {
@@ -141,18 +165,32 @@ export default function AdminMusicPlayer({ volume = 0.1 }: AdminMusicPlayerProps
     audio.addEventListener('ended', handleEnded);
 
     return () => {
+      cancelled = true;
+      fadeOutAndPause();
       audio.removeEventListener('ended', handleEnded);
       if (interactionHandler) {
         interactionEvents.forEach((eventName) => {
           document.removeEventListener(eventName, interactionHandler as EventListener);
         });
       }
+      cleanupTimeouts.forEach((timeout) => window.clearTimeout(timeout));
     };
   }, [tracks, currentIndex, volume]);
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) {
+      return;
+    }
+
+    if (!audio.paused) {
+      audio.volume = Math.min(volume, 1);
+    }
+  }, [volume]);
+
   const audioElement = useMemo(
     () => (
-      <audio ref={audioRef} className="hidden" preload="auto" />
+      <audio ref={audioRef} id="admin-music-audio" className="hidden" preload="auto" />
     ),
     []
   );

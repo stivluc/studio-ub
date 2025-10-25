@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 
 const INTERACTIVE_SELECTOR = '.glitch-on-hover, .glitch-on-hover-subtle';
+const CLICKABLE_SELECTOR = 'button, a, [role="button"], [data-click-sound]';
 
 interface RetroSoundManagerProps {
   volume?: number;
@@ -12,11 +13,14 @@ export default function RetroSoundManager({ volume = 0.32 }: RetroSoundManagerPr
   const stopTimeoutRef = useRef<number | null>(null);
   const audioElement = useMemo(
     () => (
-      <audio
-        id="retro-hover-sound"
-        src="/sounds/tv-noise-2.mp3"
-        preload="auto"
-      />
+      <>
+        <audio
+          id="retro-hover-sound"
+          src="/sounds/tv-noise-2.mp3"
+          preload="auto"
+        />
+        <audio id="global-button-sound" src="/sounds/button.mp3" preload="auto" />
+      </>
     ),
     []
   );
@@ -99,12 +103,55 @@ export default function RetroSoundManager({ volume = 0.32 }: RetroSoundManagerPr
       }
     };
 
+    const playClickSound = () => {
+      const primary = document.getElementById('button-sound') as HTMLAudioElement | null;
+      const fallback = document.getElementById('global-button-sound') as HTMLAudioElement | null;
+      const audioTarget = primary ?? fallback;
+      if (!audioTarget) {
+        return;
+      }
+      audioTarget.volume = 0.4;
+      audioTarget.currentTime = 0;
+      audioTarget.play().catch((err) => {
+        console.log('Click sound playback blocked:', err);
+      });
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      const clickable = target.closest(CLICKABLE_SELECTOR);
+      if (!clickable) {
+        return;
+      }
+
+      if (clickable instanceof HTMLButtonElement && clickable.disabled) {
+        return;
+      }
+
+      playClickSound();
+    };
+
+    const primaryButtonAudio = document.getElementById('button-sound') as HTMLAudioElement | null;
+    const fallbackButtonAudio = document.getElementById('global-button-sound') as HTMLAudioElement | null;
+    if (fallbackButtonAudio) {
+      fallbackButtonAudio.volume = 0.4;
+    }
+    if (primaryButtonAudio) {
+      primaryButtonAudio.volume = 0.4;
+    }
+
     document.addEventListener('pointerover', handlePointerOver);
     document.addEventListener('pointerleave', handlePointerLeave, true);
+    document.addEventListener('pointerdown', handlePointerDown, true);
 
     return () => {
       document.removeEventListener('pointerover', handlePointerOver);
       document.removeEventListener('pointerleave', handlePointerLeave, true);
+      document.removeEventListener('pointerdown', handlePointerDown, true);
       clearStopTimeout();
       audio.pause();
       audio.currentTime = 0;

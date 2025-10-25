@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { fadeOutAudio } from '@/lib/utils/audioFade';
 
 type AdminNavbarProps = {
   user: {
@@ -15,6 +16,8 @@ type AdminNavbarProps = {
 
 export default function AdminNavbar({ user, firstName }: AdminNavbarProps) {
   const [scrolled, setScrolled] = useState(false);
+  const signOutFormRef = useRef<HTMLFormElement>(null);
+  const submittingRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +32,25 @@ export default function AdminNavbar({ user, firstName }: AdminNavbarProps) {
   const navClasses = `sticky top-0 z-40 border-b border-[var(--color-cream)]/10 backdrop-blur-md transition-all duration-300 ${
     scrolled ? 'bg-[var(--color-dark)]/70 shadow-lg' : 'bg-[var(--color-dark)]/90 shadow-md'
   }`;
+
+  const handleSignOutSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    if (submittingRef.current) {
+      return;
+    }
+
+    event.preventDefault();
+    submittingRef.current = true;
+
+    const audio = document.getElementById('admin-music-audio') as HTMLAudioElement | null;
+    if (audio && !audio.paused) {
+      fadeOutAudio(audio, 700);
+      window.setTimeout(() => {
+        signOutFormRef.current?.submit();
+      }, 720);
+    } else {
+      signOutFormRef.current?.submit();
+    }
+  };
 
   return (
     <nav className={navClasses}>
@@ -73,7 +95,7 @@ export default function AdminNavbar({ user, firstName }: AdminNavbarProps) {
                   <span className="glitch-on-hover-subtle">{firstName}</span>
                   <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
                 </Link>
-                <form action="/api/auth/sign-out" method="post">
+                <form ref={signOutFormRef} action="/api/auth/sign-out" method="post" onSubmit={handleSignOutSubmit}>
                   <button
                     type="submit"
                     className="px-5 py-2.5 bg-[var(--color-brown)] hover:bg-[var(--color-brown)]/80 text-[var(--color-cream)] font-semibold text-base rounded-xl transition-all duration-200 cursor-pointer"
