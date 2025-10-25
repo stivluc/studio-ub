@@ -102,7 +102,9 @@ export default function PasswordChangeForm() {
         disabled={loading}
         className="bg-[var(--color-cream)] text-[var(--color-pine)] px-6 py-3 rounded-lg font-medium hover:bg-[var(--color-cream)]/90 transition-colors disabled:opacity-50"
       >
-        {loading ? 'Mise à jour...' : 'Mettre à jour le mot de passe'}
+        <span className="glitch-on-hover-subtle">
+          {loading ? 'Mise à jour...' : 'Mettre à jour le mot de passe'}
+        </span>
       </button>
     </form>
   );

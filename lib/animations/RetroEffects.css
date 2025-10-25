@@ -81,46 +81,53 @@
   }
 }
 
-/* Variante subtile pour les petits éléments (boutons, liens) */
-@keyframes glitch-horizontal-subtle {
+/* Variante medium pour les petits éléments (boutons, liens) */
+@keyframes glitch-horizontal-medium {
   0% {
     transform: translateX(0);
+    clip-path: inset(0 0 0 0);
   }
   15% {
-    transform: translateX(-1px);
+    transform: translateX(-2px);
+    clip-path: inset(35% 0 55% 0);
   }
   30% {
     transform: translateX(0);
+    clip-path: inset(0 0 0 0);
   }
   45% {
-    transform: translateX(1px);
+    transform: translateX(2px);
+    clip-path: inset(55% 0 35% 0);
   }
   60% {
     transform: translateX(0);
+    clip-path: inset(0 0 0 0);
   }
   75% {
     transform: translateX(-1px);
+    clip-path: inset(25% 0 65% 0);
   }
   100% {
     transform: translateX(0);
+    clip-path: inset(0 0 0 0);
   }
 }
 
-@keyframes glitch-shift-subtle {
+@keyframes glitch-shift-medium {
   0%, 50%, 55%, 75%, 80%, 100% {
     transform: skewX(0deg);
   }
   52% {
-    transform: skewX(2deg) translateX(-1px);
+    transform: skewX(8deg) translateX(-2px);
   }
   53% {
-    transform: skewX(-2deg) translateX(1px);
+    transform: skewX(-8deg) translateX(2px);
   }
   77% {
-    transform: skewX(3deg) translateX(-2px);
+    transform: skewX(12deg) translateX(-3px);
   }
   78% {
-    transform: skewX(-3deg) translateX(2px);
+    transform: skewX(-12deg) translateX(3px);
   }
 }
 
@@ -161,5 +168,5 @@
 button:hover .glitch-on-hover-subtle,
 a:hover > .glitch-on-hover-subtle,
 .group:hover > .glitch-on-hover-subtle {
-  animation: glitch-horizontal-subtle 0.4s infinite, glitch-shift-subtle 1.5s infinite;
+  animation: glitch-horizontal-medium 0.4s infinite, glitch-shift-medium 1.5s infinite;
 }
