@@ -40,6 +40,7 @@
     "primaryButton": "Bouton Principal",
     "secondaryButton": "Bouton Secondaire",
     "brownButton": "Bouton Marron",
+    "dangerButton": "Bouton Danger",
     "linkText": "Ceci est un lien texte avec soulignement au survol",
     "secondaryText": "Ce texte utilise 70% d'opacité pour les informations secondaires",
     "footerText": "Studio UB - Test de Configuration du Thème"

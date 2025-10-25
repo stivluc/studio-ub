@@ -9,6 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   className?: string;
   liftOnHover?: boolean;
+  glitch?: boolean;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -35,13 +36,13 @@ export function Button({
   size = 'md',
   className = '',
   liftOnHover = true,
+  glitch = true,
   disabled,
   ...props
 }: ButtonProps) {
   return (
     <button
       className={`
-        glitch-on-hover
         ${variantStyles[variant]}
         ${sizeStyles[size]}
         rounded-xl font-semibold
@@ -53,7 +54,7 @@ export function Button({
       disabled={disabled}
       {...props}
     >
-      <span className="glitch-on-hover-subtle">{children}</span>
+      {glitch ? <span className="glitch-on-hover-subtle">{children}</span> : children}
     </button>
   );
 }

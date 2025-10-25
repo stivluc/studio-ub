@@ -12,7 +12,7 @@ export default function Home() {
     { variant: 'primary', label: t('primaryButton') },
     { variant: 'secondary', label: t('brownButton') },
     { variant: 'ghost', label: t('secondaryButton') },
-    { variant: 'danger', label: 'Danger' },
+    { variant: 'danger', label: t('dangerButton') },
   ];
 
   return (
@@ -59,17 +59,19 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="crt-scanlines-hover" />
               <CardContent className="relative z-10 space-y-6 p-8">
-                <div className="inline-flex items-center gap-3 bg-[var(--color-cream)]/10 px-4 py-2 rounded-xl">
-                  <svg className="w-6 h-6 text-[var(--color-cream)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span className="uppercase tracking-wider text-[var(--color-cream)]/70 text-xs">Portfolio</span>
-                </div>
-                <div className="space-y-3">
-                  <h3 className="text-3xl font-bold glitch-on-hover">Projet Glitch Vibes</h3>
-                  <p className="text-[var(--color-cream)]/70 leading-relaxed">
-                    Aperçu d&apos;une carte admin avec effet glitch latéral et hover sonore, fidèle à l&apos;interface en production.
-                  </p>
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-3 bg-[var(--color-cream)]/10 px-4 py-2 rounded-xl">
+                    <svg className="w-6 h-6 text-[var(--color-cream)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span className="uppercase tracking-wider text-[var(--color-cream)]/70 text-xs">Portfolio</span>
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="text-3xl font-bold">Projet Glitch Vibes</h3>
+                    <p className="text-[var(--color-cream)]/70 leading-relaxed">
+                      Aperçu d&apos;une carte admin avec effet glitch latéral et hover sonore, fidèle à l&apos;interface en production.
+                    </p>
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <Button size="sm">Voir le projet</Button>

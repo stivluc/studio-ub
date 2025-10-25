@@ -40,6 +40,7 @@
     "primaryButton": "Primary Button",
     "secondaryButton": "Secondary Button",
     "brownButton": "Brown Button",
+    "dangerButton": "Danger Button",
     "linkText": "This is a text link with hover underline",
     "secondaryText": "This text uses 70% opacity for secondary information",
     "footerText": "Studio UB - Theme Configuration Test"
