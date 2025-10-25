@@ -317,7 +317,13 @@ export default function ProjectForm({ project }: ProjectFormProps) {
               {images.map((img, index) => (
                 <div key={index} className="relative group">
                   <div className="relative h-40 bg-[var(--color-dark)] rounded-lg overflow-hidden">
-                    <Image src={img.url} alt={img.alt_text || ''} fill className="object-cover" />
+                    <Image
+                      src={img.url}
+                      alt={img.alt_text || ''}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                      className="object-cover"
+                    />
                   </div>
                   <button
                     type="button"

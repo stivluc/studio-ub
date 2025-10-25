@@ -139,11 +139,11 @@ export default async function AdminPage() {
             {imagesCount || 0}
           </p>
         </div>
-       <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
-         <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
-           Dernière mise à jour
-         </p>
-         <p className="text-4xl font-bold text-[var(--color-cream)] tracking-tight">
+        <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
+          <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
+            Dernière mise à jour
+          </p>
+          <p className="text-4xl font-bold text-[var(--color-cream)] tracking-tight">
             {lastUpdatedProject?.updated_at
               ? (() => {
                   const date = new Date(lastUpdatedProject.updated_at);
@@ -154,32 +154,8 @@ export default async function AdminPage() {
                   const year = String(date.getFullYear()).slice(-2);
                   return `${formattedDate} ${year}`;
                 })()
-             : 'Aucune'}
-         </p>
-       </div>
-
-        <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm md:col-span-3">
-          <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
-            Usage stockage Supabase (plan gratuit 500MB)
+              : 'Aucune'}
           </p>
-          {storageUsagePercentage !== null ? (
-            <div>
-              <div className="flex items-center justify-between text-[var(--color-cream)]/80 text-sm mb-2">
-                <span>{storageUsagePercentage.toFixed(1)}%</span>
-                <span>{((storageUsagePercentage / 100) * 500).toFixed(1)} MB / 500 MB</span>
-              </div>
-              <div className="h-2 rounded-full bg-[var(--color-cream)]/10 overflow-hidden">
-                <div
-                  className="h-full bg-[var(--color-cream)] transition-all duration-500"
-                  style={{ width: `${storageUsagePercentage}%` }}
-                />
-              </div>
-            </div>
-          ) : (
-            <p className="text-[var(--color-cream)]/50 text-sm">
-              Impossible de récupérer l&apos;usage de stockage pour le moment.
-            </p>
-          )}
         </div>
       </div>
 
@@ -205,6 +181,30 @@ export default async function AdminPage() {
               {process.env.NODE_ENV}
             </p>
           </div>
+        </div>
+
+        <div className="mt-6">
+          <label className="text-[var(--color-cream)]/50 text-sm font-semibold uppercase tracking-wider">
+            Stockage Supabase (500 MB)
+          </label>
+          {storageUsagePercentage !== null ? (
+            <div className="mt-3 space-y-2">
+              <div className="flex items-center justify-between text-[var(--color-cream)]/70 text-xs">
+                <span>{storageUsagePercentage.toFixed(1)}%</span>
+                <span>{((storageUsagePercentage / 100) * 500).toFixed(1)} MB / 500 MB</span>
+              </div>
+              <div className="h-2 rounded-full bg-[var(--color-cream)]/10 overflow-hidden">
+                <div
+                  className="h-full bg-[var(--color-cream)] transition-all duration-500"
+                  style={{ width: `${storageUsagePercentage}%` }}
+                />
+              </div>
+            </div>
+          ) : (
+            <p className="text-[var(--color-cream)]/50 text-sm mt-2">
+              Usage non disponible pour le moment.
+            </p>
+          )}
         </div>
       </div>
     </div>
