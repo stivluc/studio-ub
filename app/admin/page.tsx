@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { supabaseService } from "@/lib/supabase/service";
 import { redirect } from "next/navigation";
 import { Card } from "@/components/ui/Card";
 
@@ -28,6 +29,20 @@ export default async function AdminPage() {
     .order("updated_at", { ascending: false })
     .limit(1)
     .single();
+
+  let storageUsagePercentage: number | null = null;
+  try {
+    const { data, error } = await supabaseService.rpc('storage_usage_bytes');
+    if (error) {
+      throw error;
+    }
+
+    const bytesUsed = typeof data === 'number' ? data : 0;
+    const freePlanLimit = 500 * 1024 * 1024; // 500 MB
+    storageUsagePercentage = Math.min(100, (bytesUsed / freePlanLimit) * 100);
+  } catch (error) {
+    console.error('Unable to fetch storage usage:', error);
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -124,11 +139,11 @@ export default async function AdminPage() {
             {imagesCount || 0}
           </p>
         </div>
-        <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
-          <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
-            Dernière mise à jour
-          </p>
-          <p className="text-4xl font-bold text-[var(--color-cream)] tracking-tight">
+       <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
+         <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
+           Dernière mise à jour
+         </p>
+         <p className="text-4xl font-bold text-[var(--color-cream)] tracking-tight">
             {lastUpdatedProject?.updated_at
               ? (() => {
                   const date = new Date(lastUpdatedProject.updated_at);
@@ -139,8 +154,32 @@ export default async function AdminPage() {
                   const year = String(date.getFullYear()).slice(-2);
                   return `${formattedDate} ${year}`;
                 })()
-              : 'Aucune'}
+             : 'Aucune'}
+         </p>
+       </div>
+
+        <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm md:col-span-3">
+          <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
+            Usage stockage Supabase (plan gratuit 500MB)
           </p>
+          {storageUsagePercentage !== null ? (
+            <div>
+              <div className="flex items-center justify-between text-[var(--color-cream)]/80 text-sm mb-2">
+                <span>{storageUsagePercentage.toFixed(1)}%</span>
+                <span>{((storageUsagePercentage / 100) * 500).toFixed(1)} MB / 500 MB</span>
+              </div>
+              <div className="h-2 rounded-full bg-[var(--color-cream)]/10 overflow-hidden">
+                <div
+                  className="h-full bg-[var(--color-cream)] transition-all duration-500"
+                  style={{ width: `${storageUsagePercentage}%` }}
+                />
+              </div>
+            </div>
+          ) : (
+            <p className="text-[var(--color-cream)]/50 text-sm">
+              Impossible de récupérer l&apos;usage de stockage pour le moment.
+            </p>
+          )}
         </div>
       </div>
 
