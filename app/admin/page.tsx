@@ -47,7 +47,7 @@ export default async function AdminPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="mb-12">
-        <h1 className="text-5xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
           Tableau de bord
         </h1>
         <p className="text-[var(--color-cream)]/60 text-lg">
@@ -56,7 +56,7 @@ export default async function AdminPage() {
       </div>
 
       {/* Admin Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
         {/* Portfolio Management */}
         <Link href="/admin/portfolio" className="block">
           <Card hover interactive className="p-8">
@@ -122,7 +122,7 @@ export default async function AdminPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
           <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
             Projets

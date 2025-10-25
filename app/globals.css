@@ -2,6 +2,21 @@
 @import "../lib/animations/animations.css";
 @import "../lib/animations/RetroEffects.css";
 
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+
+  .glitch-on-hover,
+  .glitch-on-hover-subtle,
+  .group:hover .glitch-on-hover,
+  .group:hover > .glitch-on-hover-subtle,
+  button:hover .glitch-on-hover-subtle,
+  a:hover > .glitch-on-hover-subtle {
+    animation: none !important;
+  }
+}
+
 /* Semplicita Pro Font Face Declarations */
 @font-face {
   font-family: 'Semplicita Pro';

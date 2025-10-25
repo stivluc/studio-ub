@@ -21,7 +21,7 @@ export default async function AccountsPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="mb-12">
-        <h1 className="text-5xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
           Gestion du compte
         </h1>
         <p className="text-[var(--color-cream)]/60 text-lg">
@@ -32,7 +32,7 @@ export default async function AccountsPage() {
       <div className="space-y-6">
         {/* Mon profil */}
         <Card>
-          <CardContent>
+          <CardContent className="p-6 sm:p-8">
             <h2 className="text-2xl font-bold text-[var(--color-cream)] mb-6 tracking-tight">
               Mon profil
             </h2>
@@ -42,7 +42,7 @@ export default async function AccountsPage() {
 
         {/* Changement de mot de passe */}
         <Card>
-          <CardContent>
+          <CardContent className="p-6 sm:p-8">
             <h2 className="text-2xl font-bold text-[var(--color-cream)] mb-6 tracking-tight">
               Changer le mot de passe
             </h2>
@@ -52,7 +52,7 @@ export default async function AccountsPage() {
 
         {/* Informations du compte */}
         <Card>
-          <CardContent>
+          <CardContent className="p-6 sm:p-8">
             <h2 className="text-2xl font-bold text-[var(--color-cream)] mb-6 tracking-tight">
               Informations du compte
             </h2>

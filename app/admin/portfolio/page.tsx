@@ -34,17 +34,19 @@ export default async function PortfolioAdminPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="flex items-center justify-between mb-12">
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-12">
         <div>
-          <h1 className="text-5xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
             Gestion du Portfolio
           </h1>
           <p className="text-[var(--color-cream)]/60 text-lg">
             {projects?.length || 0} projet{projects?.length !== 1 ? 's' : ''} au total
           </p>
         </div>
-        <Link href="/admin/portfolio/new">
-          <Button size="lg">+ Nouveau projet</Button>
+        <Link href="/admin/portfolio/new" className="w-full md:w-auto">
+          <Button size="lg" className="w-full md:w-auto">
+            + Nouveau projet
+          </Button>
         </Link>
       </div>
 
@@ -94,6 +96,7 @@ export default async function PortfolioAdminPage() {
                         src={firstImage.url}
                         alt={firstImage.alt_text || project.title_fr}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>

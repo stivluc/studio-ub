@@ -18,12 +18,10 @@ export default async function AdminLayout({
     data: { user },
   } = await supabase.auth.getUser();
 
-  const firstName = user?.user_metadata?.first_name || 'Admin';
-
   return (
     <div className="min-h-screen bg-[var(--color-pine)] grain-texture">
       <AdminMusicPlayer />
-      <AdminNavbar user={user} firstName={firstName} />
+      <AdminNavbar user={user} />
 
       {/* Main Content */}
       <main className="relative z-0">{children}</main>

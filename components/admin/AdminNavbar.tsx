@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fadeOutAudio } from '@/lib/utils/audioFade';
@@ -11,13 +11,11 @@ type AdminNavbarProps = {
       first_name?: string;
     };
   } | null;
-  firstName: string;
 };
 
-export default function AdminNavbar({ user, firstName }: AdminNavbarProps) {
+export default function AdminNavbar({ user }: AdminNavbarProps) {
   const [scrolled, setScrolled] = useState(false);
-  const signOutFormRef = useRef<HTMLFormElement>(null);
-  const submittingRef = useRef(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,80 +27,107 @@ export default function AdminNavbar({ user, firstName }: AdminNavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navClasses = `sticky top-0 z-40 border-b border-[var(--color-cream)]/10 backdrop-blur-md transition-all duration-300 ${
-    scrolled ? 'bg-[var(--color-dark)]/70 shadow-lg' : 'bg-[var(--color-dark)]/90 shadow-md'
-  }`;
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const handleSignOutSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (submittingRef.current) {
-      return;
-    }
-
     event.preventDefault();
-    submittingRef.current = true;
 
-    const audio = document.getElementById('music-audio') as HTMLAudioElement | null;
+    const audio = document.getElementById('admin-music-audio') as HTMLAudioElement | null;
+    const form = event.currentTarget;
+
+    const submitForm = () => {
+      closeMobileMenu();
+      form.submit();
+    };
+
     if (audio && !audio.paused) {
       fadeOutAudio(audio, 1100);
-      window.setTimeout(() => {
-        signOutFormRef.current?.submit();
-      }, 1150);
+      window.setTimeout(submitForm, 1150);
     } else {
-      signOutFormRef.current?.submit();
+      submitForm();
     }
   };
 
+  const navClasses = `sticky top-0 z-40 border-b border-[var(--color-cream)]/10 backdrop-blur-md transition-all duration-300 ${
+    scrolled ? 'bg-[var(--color-dark)]/75 shadow-lg' : 'bg-[var(--color-dark)]/95 shadow-md'
+  }`;
+
+  const NavLink = ({ href, label, className = '' }: { href: string; label: string; className?: string }) => (
+    <Link
+      href={href}
+      onClick={closeMobileMenu}
+      className={`relative group glitch-on-hover block md:inline-block text-[var(--color-cream)] font-semibold text-lg py-2 md:py-0 ${className}`}
+    >
+      <span className="glitch-on-hover-subtle">{label}</span>
+      <span className="hidden md:block absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
+    </Link>
+  );
+
+  const DesktopLinks = () => (
+    <div className="hidden md:flex items-center gap-8">
+      <NavLink href="/admin" label="Dashboard" />
+      <NavLink href="/admin/portfolio" label="Portfolio" />
+    </div>
+  );
+
+  const MobileLinks = () => (
+    <div className="space-y-4">
+      <NavLink href="/admin" label="Dashboard" />
+      <NavLink href="/admin/portfolio" label="Portfolio" />
+      <NavLink href="/admin/account" label="Compte" />
+    </div>
+  );
+
   return (
-    <nav className={navClasses}>
+    <nav className={navClasses} style={{ paddingTop: 'env(safe-area-inset-top)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
-          <div className="flex items-center gap-8">
-            <Link href="/admin" className="flex items-center group">
+        <div className="flex items-center justify-between h-20 sm:h-24 gap-4">
+          <div className="flex items-center gap-4 sm:gap-8">
+            <Link href="/admin" className="flex items-center group" aria-label="Tableau de bord">
               <Image
                 src="/images/logos/logo-beige.png"
                 alt="Studio UB"
-                width={55}
-                height={55}
-                className="group-hover:scale-110 transition-transform duration-300"
+                width={44}
+                height={44}
+                className="rounded-full group-hover:scale-110 transition-transform duration-300"
               />
             </Link>
-            {user && (
-              <div className="hidden md:flex items-center gap-8">
-                <Link
-                  href="/admin"
-                  className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group glitch-on-hover"
-                >
-                  <span className="glitch-on-hover-subtle">Dashboard</span>
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <Link
-                  href="/admin/portfolio"
-                  className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group glitch-on-hover"
-                >
-                  <span className="glitch-on-hover-subtle">Portfolio</span>
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              </div>
-            )}
+            {user && <DesktopLinks />}
           </div>
-          <div className="flex items-center gap-6">
+
+          <div className="flex items-center gap-3 sm:gap-6">
             {user ? (
               <>
-                <Link
-                  href="/admin/account"
-                  className="hidden sm:inline relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group glitch-on-hover"
+                <NavLink href="/admin/account" label="Compte" className="hidden sm:block" />
+                <form
+                  action="/api/auth/sign-out"
+                  method="post"
+                  onSubmit={handleSignOutSubmit}
+                  className="hidden sm:block"
                 >
-                  <span className="glitch-on-hover-subtle">{firstName}</span>
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <form ref={signOutFormRef} action="/api/auth/sign-out" method="post" onSubmit={handleSignOutSubmit}>
                   <button
                     type="submit"
-                    className="px-5 py-2.5 bg-[var(--color-brown)] hover:bg-[var(--color-brown)]/80 text-[var(--color-cream)] font-semibold text-base rounded-xl transition-all duration-200 cursor-pointer"
+                    className="px-5 py-2.5 bg-[var(--color-brown)] hover:bg-[var(--color-brown)]/80 text-[var(--color-cream)] font-semibold text-base rounded-xl transition-all duration-200 cursor-pointer glitch-on-hover"
                   >
                     <span className="glitch-on-hover-subtle">Déconnexion</span>
                   </button>
                 </form>
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen((prev) => !prev)}
+                  className="sm:hidden inline-flex items-center justify-center rounded-xl border border-[var(--color-cream)]/30 text-[var(--color-cream)] px-3 py-2 transition-colors duration-200 hover:bg-[var(--color-cream)]/10"
+                  aria-label="Ouvrir le menu"
+                  aria-expanded={mobileMenuOpen}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d={mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+                    />
+                  </svg>
+                </button>
               </>
             ) : (
               <Link
@@ -114,6 +139,26 @@ export default function AdminNavbar({ user, firstName }: AdminNavbarProps) {
             )}
           </div>
         </div>
+
+        {user && (
+          <div
+            className={`sm:hidden overflow-hidden transition-[max-height] duration-300 border-t border-[var(--color-cream)]/10 ${
+              mobileMenuOpen ? 'max-h-80 mt-2' : 'max-h-0'
+            }`}
+          >
+            <div className="py-4 space-y-4">
+              <MobileLinks />
+              <form action="/api/auth/sign-out" method="post" onSubmit={handleSignOutSubmit}>
+                <button
+                  type="submit"
+                  className="w-full px-4 py-2 bg-[var(--color-brown)] hover:bg-[var(--color-brown)]/80 text-[var(--color-cream)] font-semibold text-base rounded-xl transition-all duration-200 cursor-pointer glitch-on-hover"
+                >
+                  <span className="glitch-on-hover-subtle">Déconnexion</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

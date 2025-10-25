@@ -313,7 +313,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
         <label className="block text-[var(--color-cream)] font-medium mb-2">Images</label>
         <div className="space-y-4">
           {images.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {images.map((img, index) => (
                 <div key={index} className="relative group">
                   <div className="relative h-40 bg-[var(--color-dark)] rounded-lg overflow-hidden">
