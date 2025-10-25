@@ -1,0 +1,110 @@
+/* CRT Scanlines Effect for Cards */
+@keyframes scanline-jitter {
+  0% { transform: translateY(0px); }
+  25% { transform: translateY(-2px); }
+  50% { transform: translateY(2px); }
+  75% { transform: translateY(-1px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glitch-horizontal {
+  0% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+  10% {
+    transform: translateX(-5px);
+    clip-path: inset(20% 0 60% 0);
+  }
+  20% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+  30% {
+    transform: translateX(3px);
+    clip-path: inset(40% 0 40% 0);
+  }
+  40% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+  50% {
+    transform: translateX(-4px);
+    clip-path: inset(60% 0 20% 0);
+  }
+  60% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+  70% {
+    transform: translateX(2px);
+    clip-path: inset(10% 0 70% 0);
+  }
+  80% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+  90% {
+    transform: translateX(-3px);
+    clip-path: inset(50% 0 30% 0);
+  }
+  100% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes glitch-shift {
+  0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% {
+    transform: skewX(0deg);
+  }
+  41% {
+    transform: skewX(10deg) translateX(-5px);
+  }
+  42% {
+    transform: skewX(-10deg) translateX(5px);
+  }
+  59% {
+    transform: skewX(40deg) translateX(-10px) translateY(2px);
+  }
+  60% {
+    transform: skewX(-40deg) translateX(10px) translateY(-2px);
+  }
+  63% {
+    transform: skewX(10deg) translateX(-5px);
+  }
+  70% {
+    transform: skewX(-50deg) translateX(-20px);
+  }
+  71% {
+    transform: skewX(10deg) translateX(20px);
+  }
+}
+
+.crt-scanlines-hover {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.6) 0px,
+    transparent 1px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.6) 3px
+  );
+  opacity: 0;
+  pointer-events: none;
+  animation: scanline-jitter 0.1s infinite;
+  transition: opacity 300ms;
+}
+
+.group:hover .crt-scanlines-hover {
+  opacity: 1;
+}
+
+.glitch-on-hover {
+  position: relative;
+}
+
+.group:hover .glitch-on-hover {
+  animation: glitch-horizontal 0.5s infinite, glitch-shift 2s infinite;
+}

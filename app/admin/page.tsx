@@ -47,7 +47,8 @@ export default async function AdminPage() {
           className="relative bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <div className="relative z-10">
+          <div className="crt-scanlines-hover"></div>
+          <div className="relative z-10 glitch-on-hover">
             <div className="mb-6 inline-block p-3 bg-[var(--color-cream)]/10 rounded-xl group-hover:bg-[var(--color-cream)]/20 transition-colors duration-300">
               <svg
                 className="w-10 h-10 text-[var(--color-cream)] group-hover:scale-110 transition-transform duration-300"
@@ -78,7 +79,8 @@ export default async function AdminPage() {
           className="relative bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <div className="relative z-10">
+          <div className="crt-scanlines-hover"></div>
+          <div className="relative z-10 glitch-on-hover">
             <div className="mb-6 inline-block p-3 bg-[var(--color-cream)]/10 rounded-xl group-hover:bg-[var(--color-cream)]/20 transition-colors duration-300">
               <svg
                 className="w-10 h-10 text-[var(--color-cream)] group-hover:scale-110 transition-transform duration-300"

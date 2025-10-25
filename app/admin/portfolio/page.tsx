@@ -83,11 +83,12 @@ export default async function PortfolioAdminPage() {
             return (
               <div
                 key={project.id}
-                className="group bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 rounded-2xl overflow-hidden border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
+                className="group bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 rounded-2xl overflow-hidden border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5 relative"
               >
+                <div className="crt-scanlines-hover" style={{ zIndex: 20 }}></div>
                 <Link
                   href={`/admin/portfolio/${project.id}`}
-                  className="block"
+                  className="block relative glitch-on-hover"
                 >
                   {firstImage ? (
                     <div className="relative h-56 bg-[var(--color-dark)] overflow-hidden">

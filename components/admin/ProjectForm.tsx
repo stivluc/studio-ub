@@ -228,7 +228,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
           required
           value={formData.title_fr}
           onChange={(e) => setFormData({ ...formData, title_fr: e.target.value })}
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
       </div>
 
@@ -242,7 +242,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
           required
           value={formData.title_en}
           onChange={(e) => setFormData({ ...formData, title_en: e.target.value })}
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
       </div>
 
@@ -255,7 +255,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
           type="text"
           value={formData.subtitle_fr}
           onChange={(e) => setFormData({ ...formData, subtitle_fr: e.target.value })}
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
       </div>
 
@@ -268,7 +268,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
           type="text"
           value={formData.subtitle_en}
           onChange={(e) => setFormData({ ...formData, subtitle_en: e.target.value })}
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
       </div>
 
@@ -281,7 +281,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
           rows={6}
           value={formData.description_fr}
           onChange={(e) => setFormData({ ...formData, description_fr: e.target.value })}
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
       </div>
 
@@ -294,7 +294,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
           rows={6}
           value={formData.description_en}
           onChange={(e) => setFormData({ ...formData, description_en: e.target.value })}
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
       </div>
 
@@ -307,7 +307,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
           type="date"
           value={formData.date}
           onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
       </div>
 
@@ -324,7 +324,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
             setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/\s+/g, '-') })
           }
           placeholder="mon-projet"
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
         <p className="text-[var(--color-cream)]/50 text-sm mt-1">
           Utilisé dans l'URL : /portfolio/{formData.slug || 'mon-projet'}
@@ -340,7 +340,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
           type="number"
           value={formData.order}
           onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
-          className="w-full bg-[var(--color-dark)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
+          className="w-full bg-[var(--color-pine)]/50 border border-[var(--color-cream)]/20 rounded-xl px-4 py-3 text-[var(--color-cream)] placeholder:text-[var(--color-cream)]/30 focus:outline-none focus:border-[var(--color-cream)]/60 focus:ring-2 focus:ring-[var(--color-cream)]/20 transition-all duration-200"
         />
       </div>
 
