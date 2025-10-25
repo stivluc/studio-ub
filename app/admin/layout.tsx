@@ -37,6 +37,13 @@ export default async function AdminLayout({
               {user && (
                 <div className="hidden md:flex items-center gap-8">
                   <Link
+                    href="/admin"
+                    className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
+                  >
+                    Dash
+                    <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[var(--color-cream)] transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                  <Link
                     href="/admin/portfolio"
                     className="relative text-[var(--color-cream)] hover:text-[var(--color-cream)] font-bold text-lg transition-colors group"
                   >

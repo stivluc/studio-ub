@@ -40,7 +40,7 @@ export default async function AdminPage() {
       </div>
 
       {/* Admin Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Portfolio Management */}
         <Link
           href="/admin/portfolio"
@@ -112,7 +112,7 @@ export default async function AdminPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
           <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
             Projets
@@ -148,7 +148,7 @@ export default async function AdminPage() {
       </div>
 
       {/* User Info */}
-      <div className="mt-16 bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 border border-[var(--color-cream)]/10 rounded-2xl p-8 shadow-lg">
+      <div className="mt-12 bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 border border-[var(--color-cream)]/10 rounded-2xl p-8 shadow-lg">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-sm font-semibold text-[var(--color-cream)]/50 uppercase tracking-wider mb-2">
