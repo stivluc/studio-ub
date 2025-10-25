@@ -41,7 +41,7 @@ export default function AdminNavbar({ user, firstName }: AdminNavbarProps) {
     event.preventDefault();
     submittingRef.current = true;
 
-    const audio = document.getElementById('admin-music-audio') as HTMLAudioElement | null;
+    const audio = document.getElementById('music-audio') as HTMLAudioElement | null;
     if (audio && !audio.paused) {
       fadeOutAudio(audio, 700);
       window.setTimeout(() => {

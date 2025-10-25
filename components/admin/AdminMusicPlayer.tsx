@@ -190,7 +190,7 @@ export default function AdminMusicPlayer({ volume = 0.1 }: AdminMusicPlayerProps
 
   const audioElement = useMemo(
     () => (
-      <audio ref={audioRef} id="admin-music-audio" className="hidden" preload="auto" />
+      <audio ref={audioRef} id="music-audio" className="hidden" preload="auto" />
     ),
     []
   );

@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs/promises';
 
-const MUSIC_DIRECTORY = path.join(process.cwd(), 'public', 'admin-music');
-const PUBLIC_PREFIX = '/admin-music';
+const MUSIC_DIRECTORY = path.join(process.cwd(), 'public', 'music');
+const PUBLIC_PREFIX = '/music';
 
 export async function GET() {
   try {
