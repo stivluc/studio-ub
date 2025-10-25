@@ -49,6 +49,7 @@ export function Button({
         transition-all duration-200
         ${liftOnHover ? 'hover:-translate-y-0.5' : ''}
         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0
+        cursor-pointer
         ${className}
       `}
       disabled={disabled}
