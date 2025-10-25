@@ -19,9 +19,9 @@ export default async function AdminLayout({
   } = await supabase.auth.getUser();
 
   return (
-    <div className="min-h-screen bg-[var(--color-dark)]">
+    <div className="min-h-screen bg-[var(--color-dark)] grain-texture">
       {/* Admin Navigation */}
-      <nav className="bg-[var(--color-pine)] border-b border-[var(--color-cream)]/20">
+      <nav className="bg-[var(--color-pine)] border-b border-[var(--color-cream)]/20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center gap-8">
@@ -38,13 +38,13 @@ export default async function AdminLayout({
                 <div className="hidden md:flex items-center gap-6">
                   <Link
                     href="/admin/portfolio"
-                    className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-medium text-lg transition-colors"
+                    className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-semibold text-lg transition-colors"
                   >
                     Portfolio
                   </Link>
                   <Link
                     href="/admin/settings"
-                    className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-medium text-lg transition-colors"
+                    className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-semibold text-lg transition-colors"
                   >
                     Paramètres
                   </Link>
@@ -54,13 +54,13 @@ export default async function AdminLayout({
             <div className="flex items-center gap-6">
               {user ? (
                 <>
-                  <span className="hidden sm:inline text-[var(--color-cream)]/80 font-light text-base">
+                  <span className="hidden sm:inline text-[var(--color-cream)]/80 font-medium text-base">
                     {user.email}
                   </span>
                   <form action="/api/auth/sign-out" method="post">
                     <button
                       type="submit"
-                      className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-medium text-base transition-colors"
+                      className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-semibold text-base transition-colors"
                     >
                       Déconnexion
                     </button>
@@ -69,7 +69,7 @@ export default async function AdminLayout({
               ) : (
                 <Link
                   href="/auth/sign-in"
-                  className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-medium text-base transition-colors"
+                  className="text-[var(--color-cream)] hover:text-[var(--color-cream)]/80 font-semibold text-base transition-colors"
                 >
                   Connexion
                 </Link>
@@ -80,7 +80,7 @@ export default async function AdminLayout({
       </nav>
 
       {/* Main Content */}
-      <main>{children}</main>
+      <main className="relative z-10">{children}</main>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default async function AdminPage() {
         <h1 className="text-4xl font-bold text-[var(--color-cream)] mb-2">
           Tableau de bord
         </h1>
-        <p className="text-[var(--color-cream)]/70 font-light">
+        <p className="text-[var(--color-cream)]/70">
           Gérez le contenu de votre site Studio UB
         </p>
       </div>
@@ -64,7 +64,7 @@ export default async function AdminPage() {
           <h2 className="text-2xl font-semibold text-[var(--color-cream)] mb-2">
             Portfolio
           </h2>
-          <p className="text-[var(--color-cream)]/70 font-light text-sm">
+          <p className="text-[var(--color-cream)]/70">
             Gérer les projets et images du portfolio
           </p>
         </Link>
@@ -98,7 +98,7 @@ export default async function AdminPage() {
           <h2 className="text-2xl font-semibold text-[var(--color-cream)] mb-2">
             Paramètres
           </h2>
-          <p className="text-[var(--color-cream)]/70 font-light text-sm">
+          <p className="text-[var(--color-cream)]/70">
             Configuration générale du site
           </p>
         </Link>
@@ -108,7 +108,7 @@ export default async function AdminPage() {
       {/* Quick Stats */}
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-[var(--color-pine)] p-6 rounded-lg border border-[var(--color-cream)]/20">
-          <p className="text-[var(--color-cream)]/70 font-light text-sm mb-1">
+          <p className="text-[var(--color-cream)]/70 font-medium mb-1">
             Projets
           </p>
           <p className="text-3xl font-bold text-[var(--color-cream)]">
@@ -116,7 +116,7 @@ export default async function AdminPage() {
           </p>
         </div>
         <div className="bg-[var(--color-pine)] p-6 rounded-lg border border-[var(--color-cream)]/20">
-          <p className="text-[var(--color-cream)]/70 font-light text-sm mb-1">
+          <p className="text-[var(--color-cream)]/70 font-medium mb-1">
             Images
           </p>
           <p className="text-3xl font-bold text-[var(--color-cream)]">
@@ -124,7 +124,7 @@ export default async function AdminPage() {
           </p>
         </div>
         <div className="bg-[var(--color-pine)] p-6 rounded-lg border border-[var(--color-cream)]/20">
-          <p className="text-[var(--color-cream)]/70 font-light text-sm mb-1">
+          <p className="text-[var(--color-cream)]/70 font-medium mb-1">
             Dernière mise à jour
           </p>
           <p className="text-3xl font-bold text-[var(--color-cream)]">
@@ -148,7 +148,7 @@ export default async function AdminPage() {
             <h3 className="text-lg font-semibold text-[var(--color-cream)] mb-1">
               Connecté en tant que
             </h3>
-            <p className="text-[var(--color-cream)]/70 font-light">
+            <p className="text-[var(--color-cream)]/80 font-medium">
               {user.email}
             </p>
           </div>
