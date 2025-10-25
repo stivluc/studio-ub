@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import ProjectForm from "@/components/admin/ProjectForm";
+import { Card, CardContent } from "@/components/ui/Card";
 
 export default async function NewProjectPage() {
   const supabase = await createClient();
@@ -19,7 +20,11 @@ export default async function NewProjectPage() {
       <h1 className="text-3xl font-bold text-[var(--color-cream)] mb-8">
         Nouveau projet
       </h1>
-      <ProjectForm />
+      <Card>
+        <CardContent>
+          <ProjectForm />
+        </CardContent>
+      </Card>
     </div>
   );
 }

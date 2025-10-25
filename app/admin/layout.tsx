@@ -21,9 +21,9 @@ export default async function AdminLayout({
   const firstName = user?.user_metadata?.first_name || 'Admin';
 
   return (
-    <div className="min-h-screen bg-[var(--color-dark)] grain-texture">
+    <div className="min-h-screen bg-[var(--color-pine)] grain-texture">
       {/* Admin Navigation */}
-      <nav className="bg-[var(--color-pine)]/95 backdrop-blur-sm border-b border-[var(--color-cream)]/10 relative z-10 shadow-lg">
+      <nav className="bg-[var(--color-dark)]/95 backdrop-blur-sm border-b border-[var(--color-cream)]/10 relative z-10 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-24">
             <div className="flex items-center gap-8">

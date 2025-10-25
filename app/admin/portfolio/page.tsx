@@ -48,7 +48,7 @@ export default async function PortfolioAdminPage() {
       </div>
 
       {!projects || projects.length === 0 ? (
-        <div className="bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 rounded-2xl border border-[var(--color-cream)]/10 p-16 text-center shadow-lg">
+        <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 rounded-2xl border border-[var(--color-cream)]/10 p-16 text-center shadow-lg">
           <div className="max-w-md mx-auto">
             <div className="w-16 h-16 bg-[var(--color-cream)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg
@@ -83,7 +83,7 @@ export default async function PortfolioAdminPage() {
             return (
               <div
                 key={project.id}
-                className="group bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 rounded-2xl overflow-hidden border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
+                className="group bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 rounded-2xl overflow-hidden border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
               >
                 <Link
                   href={`/admin/portfolio/${project.id}`}
@@ -120,7 +120,7 @@ export default async function PortfolioAdminPage() {
                       </div>
                     </div>
                   )}
-                  <div className="p-6 bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/90">
+                  <div className="p-6 bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/90">
                     <h3 className="text-2xl font-bold text-[var(--color-cream)] mb-2 tracking-tight group-hover:text-[var(--color-cream)] transition-colors">
                       {project.title_fr}
                     </h3>

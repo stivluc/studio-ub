@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect, notFound } from "next/navigation";
 import ProjectForm from "@/components/admin/ProjectForm";
+import { Card, CardContent } from "@/components/ui/Card";
 
 export default async function EditProjectPage({
   params,
@@ -40,7 +41,11 @@ export default async function EditProjectPage({
       <h1 className="text-3xl font-bold text-[var(--color-cream)] mb-8">
         Modifier le projet
       </h1>
-      <ProjectForm project={project} />
+      <Card>
+        <CardContent>
+          <ProjectForm project={project} />
+        </CardContent>
+      </Card>
     </div>
   );
 }

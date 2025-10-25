@@ -10,7 +10,7 @@ export function Card({ children, className = '', hover = false }: CardProps) {
   return (
     <div
       className={`
-        bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80
+        bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80
         rounded-2xl border border-[var(--color-cream)]/10
         shadow-lg backdrop-blur-sm
         ${hover ? 'hover:border-[var(--color-cream)]/30 hover:shadow-2xl hover:shadow-[var(--color-cream)]/5 transition-all duration-300' : ''}

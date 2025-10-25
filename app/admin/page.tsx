@@ -44,7 +44,7 @@ export default async function AdminPage() {
         {/* Portfolio Management */}
         <Link
           href="/admin/portfolio"
-          className="relative bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
+          className="relative bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="relative z-10">
@@ -75,7 +75,7 @@ export default async function AdminPage() {
         {/* Account */}
         <Link
           href="/admin/account"
-          className="relative bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
+          className="relative bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="relative z-10">
@@ -107,7 +107,7 @@ export default async function AdminPage() {
 
       {/* Quick Stats */}
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
+        <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
           <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
             Projets
           </p>
@@ -115,7 +115,7 @@ export default async function AdminPage() {
             {projectsCount || 0}
           </p>
         </div>
-        <div className="bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
+        <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
           <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
             Images
           </p>
@@ -123,7 +123,7 @@ export default async function AdminPage() {
             {imagesCount || 0}
           </p>
         </div>
-        <div className="bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
+        <div className="bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 shadow-lg backdrop-blur-sm">
           <p className="text-[var(--color-cream)]/50 font-semibold text-sm uppercase tracking-wider mb-3">
             Dernière mise à jour
           </p>
@@ -142,7 +142,7 @@ export default async function AdminPage() {
       </div>
 
       {/* Site Info */}
-      <div className="mt-12 bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 border border-[var(--color-cream)]/10 rounded-2xl p-8 shadow-lg">
+      <div className="mt-12 bg-gradient-to-br from-[var(--color-dark)] to-[var(--color-dark)]/80 border border-[var(--color-cream)]/10 rounded-2xl p-8 shadow-lg">
         <h2 className="text-2xl font-bold text-[var(--color-cream)] mb-6 tracking-tight">
           Informations du site
         </h2>
