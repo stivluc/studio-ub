@@ -1,4 +1,5 @@
 import CustomCursor from "@/components/CustomCursor";
+import RetroSoundManager from "@/components/RetroSoundManager";
 import "./globals.css";
 
 export default function RootLayout({
@@ -10,6 +11,7 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <body className="antialiased grain-texture">
         <CustomCursor />
+        <RetroSoundManager />
         {children}
       </body>
     </html>

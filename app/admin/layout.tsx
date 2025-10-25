@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
+import AdminMusicPlayer from "@/components/admin/AdminMusicPlayer";
 
 export const metadata: Metadata = {
   title: "Admin - Studio UB",
@@ -22,6 +23,7 @@ export default async function AdminLayout({
 
   return (
     <div className="min-h-screen bg-[var(--color-pine)] grain-texture">
+      <AdminMusicPlayer />
       {/* Admin Navigation */}
       <nav className="bg-[var(--color-dark)]/95 backdrop-blur-sm border-b border-[var(--color-cream)]/10 relative z-10 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
