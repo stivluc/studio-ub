@@ -72,9 +72,9 @@ export default async function AdminPage() {
           </div>
         </Link>
 
-        {/* Accounts */}
+        {/* Account */}
         <Link
-          href="/admin/accounts"
+          href="/admin/account"
           className="relative bg-gradient-to-br from-[var(--color-pine)] to-[var(--color-pine)]/80 p-8 rounded-2xl border border-[var(--color-cream)]/10 hover:border-[var(--color-cream)]/30 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[var(--color-cream)]/5"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cream)]/0 to-[var(--color-cream)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -95,10 +95,10 @@ export default async function AdminPage() {
               </svg>
             </div>
             <h2 className="text-3xl font-bold text-[var(--color-cream)] mb-3 tracking-tight">
-              Comptes
+              Compte
             </h2>
             <p className="text-[var(--color-cream)]/60 leading-relaxed">
-              Gérer votre profil et les comptes administrateurs
+              Gérer votre profil administrateur
             </p>
           </div>
         </Link>
