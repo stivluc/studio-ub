@@ -1,6 +1,5 @@
 import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
-import React from "react";
 
 export default function RootLayout({
   children,
@@ -8,9 +7,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <React.Fragment>
-      <CustomCursor />
-      {children}
-    </React.Fragment>
+    <html lang="fr" suppressHydrationWarning>
+      <body className="antialiased">
+        <CustomCursor />
+        {children}
+      </body>
+    </html>
   );
 }

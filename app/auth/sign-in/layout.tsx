@@ -11,10 +11,8 @@ export default function SignInLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
-      <body className="antialiased bg-[var(--color-dark)]">
-        {children}
-      </body>
-    </html>
+    <div className="bg-[var(--color-dark)] min-h-screen">
+      {children}
+    </div>
   );
 }
