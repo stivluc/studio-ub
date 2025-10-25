@@ -48,7 +48,8 @@ export default function AdminNavbar({ user }: AdminNavbarProps) {
     }
   };
 
-  const navBg = scrolled ? 'bg-[var(--color-dark)]/75' : 'bg-[var(--color-dark)]/95';
+  // On mobile: always opaque, on desktop: transparent when scrolled
+  const navBg = scrolled ? 'sm:bg-[var(--color-dark)]/75 bg-[var(--color-dark)]' : 'bg-[var(--color-dark)]/95';
   const navShadow = scrolled ? 'shadow-lg' : 'shadow-md';
 
   const NavLink = ({ href, label, className = '' }: { href: string; label: string; className?: string }) => (

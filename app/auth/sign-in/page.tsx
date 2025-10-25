@@ -112,7 +112,7 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center max-[599px]:p-0 p-4 bg-[var(--color-pine)]">
+    <div className="auth-page min-h-screen flex items-center justify-center max-[599px]:p-0 p-4 max-[599px]:bg-[var(--color-dark)] bg-[var(--color-pine)]">
       {/* TV Audio Player - persists in DOM via useMemo - autoplay disabled */}
       <TVAudioPlayer autoplay={false} noiseVolume={0.3} turnOnVolume={0.5} />
 
